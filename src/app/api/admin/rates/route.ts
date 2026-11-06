@@ -15,7 +15,7 @@ import { getSettings } from "@/lib/repo";
 export const dynamic = "force-dynamic";
 
 const configSchema = z.object({
-  provider: z.enum(["manual", "metals-api"]),
+  provider: z.enum(["manual", "free", "metals-api"]),
   useLiveFeed: z.object({ gold: z.boolean(), silver: z.boolean() }),
   importDutyPct: z.number().min(0).max(100),
   premiumPerGram: z.number().min(0).max(100_000),
@@ -48,7 +48,15 @@ export async function GET() {
     getHistorySeries(30),
     listAudit(50),
   ]);
-  return ok({ cards, config: settings.rateConfig, history, audit, liveConfigured: Boolean(process.env.METAL_API_KEY) });
+  return ok({
+    cards,
+    config: settings.rateConfig,
+    history,
+    audit,
+    liveConfigured:
+      settings.rateConfig.provider === "free" ||
+      (settings.rateConfig.provider === "metals-api" && Boolean(process.env.METAL_API_KEY)),
+  });
 }
 
 export async function POST(req: Request) {

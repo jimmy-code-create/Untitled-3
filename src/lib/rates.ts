@@ -123,8 +123,56 @@ export async function fetchSpotRates(): Promise<SpotRates | null> {
   };
 }
 
-/* ───────────────────────── conversion + guard ───────────────────────── */
+/**
+ * FREE keyless adapter — no signup, no quota, works with the 5-minute cron.
+ * Metals: Yahoo Finance continuous futures (USD per troy ounce).
+ * FX:     Yahoo USDINR=X with Frankfurter (ECB data) as fallback.
+ */
+async function fetchYahooQuote(symbol: string): Promise<number> {
+  const res = await fetch(
+    `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=1d&interval=1d`,
+    {
+      cache: "no-store",
+      headers: { "user-agent": "Mozilla/5.0", accept: "application/json" },
+      signal: AbortSignal.timeout(12_000),
+    },
+  );
+  if (!res.ok) throw new Error(`Free feed ${symbol} responded ${res.status}`);
+  const json: any = await res.json();
+  const price = Number(json?.chart?.result?.[0]?.meta?.regularMarketPrice);
+  if (!(price > 0)) throw new Error(`Free feed ${symbol} returned no price`);
+  return price;
+}
 
+async function fetchFrankfurterUsdInr(): Promise<number> {
+  const res = await fetch("https://api.frankfurter.dev/v1/latest?base=USD&symbols=INR", {
+    cache: "no-store",
+    headers: { accept: "application/json" },
+    signal: AbortSignal.timeout(12_000),
+  });
+  if (!res.ok) throw new Error(`FX fallback responded ${res.status}`);
+  const json: any = await res.json();
+  const rate = Number(json?.rates?.INR);
+  if (!(rate > 0)) throw new Error("FX fallback returned no INR rate");
+  return rate;
+}
+
+export async function fetchFreeSpotRates(): Promise<SpotRates | null> {
+  try {
+    const [xauUsdOz, xagUsdOz] = await Promise.all([fetchYahooQuote("GC=F"), fetchYahooQuote("SI=F")]);
+    let usdInr: number;
+    try {
+      usdInr = await fetchYahooQuote("USDINR=X");
+    } catch {
+      usdInr = await fetchFrankfurterUsdInr();
+    }
+    return { xauUsdOz, xagUsdOz, usdInr, fetchedAt: new Date().toISOString(), source: "free-market" };
+  } catch {
+    return null;
+  }
+}
+
+/* ───────────────────────── conversion + guard ───────────────────────── */
 export function convertSpotToRates(spot: SpotRates, config: RateConfig): Record<string, number> {
   const duty = 1 + config.importDutyPct / 100;
   const premium = config.premiumPerGram;
@@ -154,6 +202,12 @@ export interface RateProvider {
 export const metalsApiProvider: RateProvider = {
   name: "metals-api",
   fetchSpotRates,
+};
+
+/** Keyless market feed — free, unlimited for a 5‑minute cron. */
+export const freeMarketProvider: RateProvider = {
+  name: "free-market",
+  fetchSpotRates: fetchFreeSpotRates,
 };
 
 export const manualProvider: RateProvider = {
@@ -301,7 +355,9 @@ export async function getPublicRates(force = false): Promise<PublicRates> {
     .filter(Boolean)
     .sort()
     .at(-1) ?? new Date().toISOString();
-  const liveConfigured = Boolean(process.env.METAL_API_KEY);
+  const provider = settings.rateConfig.provider;
+  // "free" needs no key at all; "metals-api" needs METAL_API_KEY.
+  const liveConfigured = provider === "free" || (provider === "metals-api" && Boolean(process.env.METAL_API_KEY));
   const wantsLive = settings.rateConfig.useLiveFeed.gold || settings.rateConfig.useLiveFeed.silver;
   const feedSnapshots = snapshots.filter((s) => s.source !== "MANUAL");
   const latestFeed = feedSnapshots[0] ?? null;
@@ -376,13 +432,22 @@ export interface RefreshResult {
 export async function refreshRates(actor = "system"): Promise<RefreshResult> {
   const settings = await getSettings();
   const config = settings.rateConfig;
-  if (config.provider !== "metals-api") {
+  if (config.provider === "manual") {
     return { ok: false, reason: "Provider is set to manual.", published: 0, pending: [] };
   }
 
-  const spot = await fetchSpotRates();
+  const spot =
+    config.provider === "free" ? await fetchFreeSpotRates() : await fetchSpotRates();
   if (!spot) {
-    return { ok: false, reason: "No METAL_API_KEY configured. Keeping the last published rate.", published: 0, pending: [] };
+    return {
+      ok: false,
+      reason:
+        config.provider === "free"
+          ? "Free market feed unreachable. Keeping the last published rate."
+          : "No METAL_API_KEY configured. Keeping the last published rate.",
+      published: 0,
+      pending: [],
+    };
   }
 
   const computed = convertSpotToRates(spot, config);

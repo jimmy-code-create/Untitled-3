@@ -6,8 +6,13 @@
  */
 
 export interface RateConfig {
-  /** Live spot feed or the owner's manual rate. */
-  provider: "manual" | "metals-api";
+  /**
+   * Provider:
+   *  - "manual"      → only the owner's rates (no network calls)
+   *  - "free"        → keyless market feed (Yahoo Finance + Frankfurter FX)
+   *  - "metals-api"  → Metals-API spot feed (needs METAL_API_KEY)
+   */
+  provider: "manual" | "free" | "metals-api";
   useLiveFeed: { gold: boolean; silver: boolean };
   /** India adjustment — configured by the owner, never hard-coded. */
   importDutyPct: number;
@@ -107,7 +112,7 @@ export function mergeSettings(raw: unknown): ShopSettings {
       youtube: str(socials.youtube, ""),
     },
     rateConfig: {
-      provider: rate.provider === "metals-api" ? "metals-api" : "manual",
+      provider: rate.provider === "metals-api" || rate.provider === "free" ? rate.provider : "manual",
       useLiveFeed: {
         gold: bool(live.gold, false),
         silver: bool(live.silver, false),

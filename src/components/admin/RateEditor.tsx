@@ -153,8 +153,17 @@ export function RateEditor({
 
       {!liveConfigured ? (
         <p className="rounded-card border border-burgundy/10 bg-white px-4 py-3 text-[11px] text-bodygrey">
-          No <code className="text-burgundy">METAL_API_KEY</code> is set. The site is using the shop rates below.
-          Live feed rows stay empty until a key is configured.
+          {cfg.provider === "metals-api" ? (
+            <>
+              No <code className="text-burgundy">METAL_API_KEY</code> is set. The site is using the shop rates below.
+              Live feed rows stay empty until a key is configured — or switch the rate source to the free feed.
+            </>
+          ) : (
+            <>
+              Manual mode: the site uses only the shop rates you enter below. Pick the free live market feed above to
+              follow the market automatically.
+            </>
+          )}
         </p>
       ) : null}
 
@@ -271,6 +280,18 @@ export function RateEditor({
 
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           <label>
+            <span className="text-[10px] uppercase tracking-[0.1em] text-bodygrey">Rate source</span>
+            <select
+              value={cfg.provider}
+              onChange={(e) => setCfg({ ...cfg, provider: e.target.value as RateConfig["provider"] })}
+              className="field mt-1 py-2 text-[13px]"
+            >
+              <option value="manual">Manual rates only</option>
+              <option value="free">Free live market feed (no key)</option>
+              <option value="metals-api">Metals-API (key required)</option>
+            </select>
+          </label>
+          <label>
             <span className="text-[10px] uppercase tracking-[0.1em] text-bodygrey">Import duty %</span>
             <input
               type="number"
@@ -314,8 +335,15 @@ export function RateEditor({
           Save adjustment
         </button>
         <p className="mt-2 text-[10px] text-bodygrey">
-          Toggle provider: <strong>{cfg.provider === "metals-api" ? "Live spot feed" : "Manual only"}</strong>. The
-          live adapter uses XAU/USD, XAG/USD and USD/INR, then converts per troy ounce (31.1035 g).
+          <strong>
+            {cfg.provider === "free"
+              ? "Free market feed"
+              : cfg.provider === "metals-api"
+                ? "Metals-API spot feed"
+                : "Manual only"}
+          </strong>
+          . Live feeds read XAU/USD, XAG/USD and USD/INR, then convert per troy ounce (31.1035 g). The free feed
+          uses Yahoo Finance + Frankfurter FX — no signup, no quota.
         </p>
       </div>
 

@@ -1,0 +1,302 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * JMD storefront skin — warm cream pages, deep burgundy, soft gold.
+ * Tokens live in src/lib/design-tokens.ts; this file maps them to classes.
+ */
+
+@layer base {
+  :root {
+    --font-fraunces: "Fraunces";
+    --font-plex: "IBM Plex Sans";
+    --font-cormorant: "Cormorant Garamond";
+    --font-inter: "Inter";
+    --font-devanagari: "Noto Sans Devanagari";
+    --font-script: "Fraunces";
+    --section-y: 56px;
+    --section-y-lg: 96px;
+    --page-gutter: 16px;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+
+  body {
+    @apply bg-cream font-sans text-bodygrey antialiased;
+    font-size: 16px;
+    line-height: 26px;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif font-semibold text-ink;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: rgba(176, 122, 42, 0.24);
+    color: #2a0a0e;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid #7a1f2b;
+    outline-offset: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #fdf1e6;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d9bfa4;
+    border-radius: 999px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-content px-4 sm:px-6 lg:px-12;
+  }
+
+  .section {
+    padding-top: var(--section-y);
+    padding-bottom: var(--section-y);
+  }
+  @media (min-width: 1024px) {
+    .section {
+      padding-top: var(--section-y-lg);
+      padding-bottom: var(--section-y-lg);
+    }
+  }
+
+  .measure {
+    @apply max-w-measure;
+  }
+
+  .label {
+    @apply text-12 uppercase tracking-label;
+    color: #7a4e12;
+  }
+
+  .label-light {
+    @apply text-12 uppercase tracking-label;
+    color: #f3d29a;
+  }
+
+  .h1-hero {
+    @apply font-serif text-28 sm:text-44 lg:text-72;
+    letter-spacing: -0.02em;
+  }
+
+  .h2 {
+    @apply font-serif text-28 sm:text-34;
+  }
+
+  .h3 {
+    @apply font-serif text-20 sm:text-28;
+  }
+
+  .hairline {
+    height: 1px;
+    width: 100%;
+    background: rgba(122, 31, 43, 0.14);
+  }
+
+  .hairline-dark {
+    height: 1px;
+    width: 100%;
+    background: rgba(253, 241, 230, 0.18);
+  }
+
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-control px-6 text-12 uppercase tracking-label transition-colors duration-300;
+  }
+
+  .btn-copper {
+    @apply btn border border-burgundy bg-burgundy text-white hover:border-burgundy-dark hover:bg-burgundy-dark;
+  }
+
+  .btn-navy {
+    @apply btn bg-burgundy-dark text-cream hover:bg-burgundy;
+  }
+
+  .btn-outline {
+    @apply btn border border-burgundy/40 text-burgundy hover:bg-burgundy hover:text-white;
+  }
+
+  .btn-outline-light {
+    @apply btn border border-gold-light/60 text-cream hover:bg-gold-light hover:text-burgundy-dark;
+  }
+
+  .btn-whatsapp {
+    @apply btn bg-whatsapp text-white hover:bg-[#0B6231];
+  }
+
+  .btn-gold {
+    @apply btn border border-gold/50 bg-transparent text-gold-dark hover:bg-gold hover:text-white;
+  }
+
+  .card {
+    @apply rounded-card border border-burgundy/10 bg-white shadow-card;
+  }
+
+  .field {
+    @apply min-h-11 w-full rounded-control border border-burgundy/20 bg-white px-5 py-3 text-14 text-ink
+      placeholder:text-bodygrey/70 focus:border-burgundy focus:outline-none;
+  }
+
+  .field-dark {
+    @apply min-h-11 w-full rounded-control border border-cream/20 bg-burgundy-soft px-5 py-3 text-14 text-cream
+      placeholder:text-cream/45 focus:border-gold-light focus:outline-none;
+  }
+
+  .link-quiet {
+    @apply relative text-14 text-bodygrey transition-colors hover:text-burgundy;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden rounded-photo bg-blush;
+    background-image: linear-gradient(90deg, #f3e7e8 0px, #fdf1e6 40px, #f3e7e8 80px);
+    background-size: 600px 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Footer top edge: two rounded humps meeting in a small V dip at centre. */
+  .footer-humps {
+    height: 22px;
+    background:
+      radial-gradient(60% 100% at 25% 100%, #2e0609 99%, transparent 100%),
+      radial-gradient(60% 100% at 75% 100%, #2e0609 99%, transparent 100%),
+      linear-gradient(#2e0609, #2e0609);
+    background-size: 50% 100%, 50% 100%, 100% 8px;
+    background-position: left bottom, right bottom, center bottom;
+    background-repeat: no-repeat;
+    clip-path: polygon(0 100%, 0 62%, 8% 28%, 20% 8%, 32% 0, 44% 6%, 50% 22%, 56% 6%, 68% 0, 80% 8%, 92% 28%, 100% 62%, 100% 100%);
+  }
+
+  /* Arch-topped shop card with a soft blush ledge underneath. */
+  .arch-card {
+    border-radius: 160px 160px 24px 24px;
+    box-shadow: 0 18px 0 -6px #f3e7e8, 0 30px 50px -30px rgba(46, 6, 9, 0.35);
+  }
+
+  .diamond-dot {
+    display: block;
+    width: 8px;
+    height: 8px;
+    transform: rotate(45deg);
+    border-radius: 1px;
+    background: #d8c9c1;
+    transition: background-color 250ms ease;
+  }
+  .diamond-dot[data-active="true"] {
+    background: #7a1f2b;
+  }
+
+  .logo-shine {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .logo-shine::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40%;
+    background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.45) 50%, transparent 100%);
+    animation: logo-shine 600ms ease-out 300ms 1 both;
+  }
+
+  .rate-digits {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+
+  .rate-change-up {
+    color: #1f7a45;
+  }
+  .rate-change-down {
+    color: #b3261e;
+  }
+
+  /* Scroll reveal: 16px up, 400ms, once. */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  .reveal-up.reveal-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-up {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer utilities {
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -300px 0;
+  }
+  100% {
+    background-position: 300px 0;
+  }
+}

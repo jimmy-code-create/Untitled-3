@@ -3,24 +3,21 @@ services:
     name: jmd-gems-jewellery
     env: node
     plan: free
+    installCommand: npm install --include=dev --no-audit --no-fund
     buildCommand: npm run build
     startCommand: npm start
     envVars:
-      - key: NODE_ENV
-        value: production
       - key: NEXTAUTH_URL
         value: https://jmd-gems-jewellery.onrender.com
       - key: NEXTAUTH_SECRET
         generateValue: true
-      - key: METAL_API_KEY
-        # Leave blank if you want manual rates (set them in /admin/rates)
-        # If you have a Metal-API key, paste it here.
+      - key: CRON_SECRET
+        # Create a random string, e.g. run: openssl rand -hex 16
       - key: METAL_API_URL
         value: https://metals-api.com/api/latest
-      - key: CRON_SECRET
-        # Create a random string here (e.g. openssl rand -hex 16)
-        # Needed only if you run an external cron to hit /api/cron/rates
+      - key: METAL_API_KEY
+        # Optional. Leave blank to use manual rates from /admin/rates
       - key: DATABASE_URL
-        # Leave empty for Demo-mode (JSON store). Add Postgres URL if you upgrade.
+        # Optional. Leave blank to stay in Demo mode (JSON store)
       - key: NPM_CONFIG_PRODUCTION
         value: "false"

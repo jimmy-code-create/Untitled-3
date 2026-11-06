@@ -5,8 +5,8 @@
   "description": "JMD Gems Jewellery — luxury certified gemstone jewellery, full stack.",
   "scripts": {
     "dev": "next dev",
-    "build": "npx --yes next build --webpack",
-    "start": "next start -p $PORT",
+    "build": "npm install --include=dev --no-audit --no-fund && ./node_modules/.bin/next build --webpack",
+    "start": "./node_modules/.bin/next start -p $PORT",
     "lint": "next lint",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",

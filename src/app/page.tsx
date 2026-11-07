@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { CinematicHero } from "@/components/home/CinematicHero";
-import { CollectionsFeature } from "@/components/home/CollectionsFeature";
-import { WorldOfJmd } from "@/components/home/WorldOfJmd";
+import { MaisonStatement } from "@/components/home/MaisonStatement";
+import { CollectionCards } from "@/components/home/CollectionCards";
+import { RingWall } from "@/components/home/RingWall";
+import { StoneFeature } from "@/components/home/StoneFeature";
 import { GiftBanner } from "@/components/home/GiftBanner";
 import { ExchangeCard } from "@/components/home/ExchangeCard";
 import { Assurance } from "@/components/home/Assurance";
 import { Trending } from "@/components/home/Trending";
 import { VisitShop } from "@/components/home/VisitShop";
-import { Divider } from "@/components/ui/Divider";
 import { getFeatured, getSettings } from "@/lib/repo";
 import { SHOP, fullAddress } from "@/lib/utils";
 
@@ -39,14 +40,14 @@ export default async function HomePage() {
   return (
     <>
       <CinematicHero />
-      <CollectionsFeature />
-      <WorldOfJmd />
+      <MaisonStatement />
+      <CollectionCards />
+      <RingWall />
+      <StoneFeature />
       <GiftBanner settings={settings} />
       <ExchangeCard settings={settings} />
-      <Divider />
       <Assurance settings={settings} />
       <Trending items={featured} />
-      <Divider />
       <VisitShop />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }} />
     </>

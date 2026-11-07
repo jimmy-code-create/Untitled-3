@@ -50,12 +50,13 @@ export function Navbar({
 
   return (
     <>
-      <div className="sticky top-0 z-50 bg-black/70 backdrop-blur-2xl">
+      <div className="sticky top-0 z-50 bg-black/80 backdrop-blur-2xl">
         <AnnouncementBar text={settings.announcementText} />
 
-        <header className="border-b border-white/10">
-          <div className="container-x">
-            <div className="relative flex h-16 items-center justify-between">
+        {/* Floating glass bar, the reference's chrome. */}
+        <div className="px-3 pt-2.5 sm:px-4">
+          <header className="mx-auto max-w-content rounded-[24px] border border-white/10 bg-black/50 backdrop-blur-2xl">
+            <div className="relative flex h-14 items-center justify-between px-1.5 sm:px-2.5">
               {/* Left: hamburger + logo */}
               <div className="flex items-center gap-0.5">
                 <button
@@ -77,14 +78,27 @@ export function Navbar({
                 </Link>
               </div>
 
-              {/* Desktop logo, centred */}
-              <Link
-                href="/"
-                aria-label="JMD Gems & Jewellery — home"
-                className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:block"
+              {/* Desktop links, centred inside the pill */}
+              <nav
+                aria-label="Collections"
+                className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-6 lg:flex xl:gap-7"
               >
-                <Logo size="md" />
-              </Link>
+                {NAV.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="whitespace-nowrap text-[10.5px] font-medium uppercase tracking-[0.12em] text-white/60 transition-colors hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <Link
+                  href="/gold-rate"
+                  className="whitespace-nowrap text-[10.5px] font-medium uppercase tracking-[0.12em] text-[#E4C68F]/85 transition-colors hover:text-white"
+                >
+                  Today&apos;s Rate
+                </Link>
+              </nav>
 
               {/* Right: icons */}
               <div className="flex items-center">
@@ -110,33 +124,12 @@ export function Navbar({
                 </Link>
               </div>
             </div>
-          </div>
+          </header>
+        </div>
 
-          {/* Desktop nav row */}
-          <nav aria-label="Collections" className="hidden border-t border-white/10 lg:block">
-            <div className="container-x flex h-11 items-center justify-center gap-8">
-              {NAV.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-[11px] font-medium uppercase tracking-[0.12em] text-white/65 transition-colors hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Link
-                href="/gold-rate"
-                className="text-[11px] font-medium uppercase tracking-[0.12em] text-gold-dark transition-colors hover:text-white"
-              >
-                Today&apos;s Rate
-              </Link>
-            </div>
-          </nav>
-
-          {/* Search + rate strip */}
-          <SearchBar />
-          <RateTicker />
-        </header>
+        {/* Search + rate strip */}
+        <SearchBar />
+        <RateTicker />
       </div>
 
       <MenuDrawer open={menuOpen} onClose={() => setMenuOpen(false)} settings={settings} />

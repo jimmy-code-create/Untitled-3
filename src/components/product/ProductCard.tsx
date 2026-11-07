@@ -8,6 +8,7 @@ import { LivePrice } from "@/components/rates/LivePrice";
 import { AddToCartButton } from "./AddToCartButton";
 import { cn } from "@/lib/utils";
 import { ImageSlot } from "@/components/ui/ImageSlot";
+import { CATALOGUE_FLAGS } from "@/lib/catalogue-config";
 
 /**
  * Catalogue card.
@@ -29,8 +30,9 @@ export function ProductCard({
 }) {
   const wishlist = useWishlist();
   const saved = wishlist.items.some((i) => i.slug === product.slug);
-  const badge = product.certifications[0] ?? null;
-  const lowStock = product.stock > 0 && product.stock <= 2;
+  // Badges are opt-in: see CATALOGUE_FLAGS. Nothing is claimed by default.
+  const badge = CATALOGUE_FLAGS.showHallmark ? (product.certifications[0] ?? null) : null;
+  const lowStock = CATALOGUE_FLAGS.showScarcity && product.stock > 0 && product.stock <= 2;
 
   return (
     <article className={cn("group relative flex flex-col", className)}>

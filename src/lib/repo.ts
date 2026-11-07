@@ -1,6 +1,5 @@
 import { computeBreakup, DEFAULT_RATES, rateKey, type RateMap } from "./pricing";
 import { products as catalogProducts, type CatalogProduct } from "./catalog";
-import { bulkProducts } from "./catalog-bulk";
 import { readDemo, writeDemo, type DemoEnquiry, type DemoOrder, type DemoRate } from "./demo-db";
 import { orderNumber } from "./utils";
 import { mergeSettings, type ShopSettings } from "./settings";
@@ -39,14 +38,8 @@ export interface ProductFilters {
 
 let prismaPromise: Promise<any> | null = null;
 
-/** The hand-written pieces plus the generated house line (1,000+ SKUs). */
-export const allCatalogProducts: CatalogProduct[] = [...catalogProducts, ...bulkProducts];
-
-/** Append the house line without duplicating anything already in the store. */
-function withHouseLine(base: CatalogProduct[]) {
-  const seen = new Set(base.map((p) => p.slug));
-  return [...base, ...bulkProducts.filter((p) => !seen.has(p.slug))];
-}
+/** Editorial pieces maintained in catalog.ts (the file-driven catalogue lives in src/lib/catalogue.ts). */
+export const allCatalogProducts: CatalogProduct[] = [...catalogProducts];
 
 export function hasDatabase() {
   return Boolean(process.env.DATABASE_URL);
@@ -325,8 +318,6 @@ export async function listProducts(filters: ProductFilters = {}) {
     base = demo.products;
   }
 
-  base = withHouseLine(base);
-
   let list = base.map((p) => decorate(p, rates)).filter((p) => matches(p, filters));
   list = sortProducts(list, filters.sort);
   const total = list.length;
@@ -381,7 +372,7 @@ export async function getProduct(slug: string): Promise<ProductView | null> {
     }
   }
   const demo = readDemo();
-  const found = demo.products.find((p) => p.slug === slug) ?? bulkProducts.find((p) => p.slug === slug);
+  const found = demo.products.find((p) => p.slug === slug);
   return found ? decorate(found, rates) : null;
 }
 

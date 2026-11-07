@@ -4,14 +4,18 @@ import Link from "next/link";
 import { IconHeart } from "@/components/icons/JmdIcons";
 import { useWishlist } from "@/store/cart";
 import type { ProductView } from "@/lib/repo";
-import { inr } from "@/lib/pricing";
+import { LivePrice } from "@/components/rates/LivePrice";
+import { AddToCartButton } from "./AddToCartButton";
 import { cn } from "@/lib/utils";
 import { ImageSlot } from "@/components/ui/ImageSlot";
 
 /**
- * Product card: 4:5 photo, 1.04 zoom on hover at 300ms, flat square controls.
- * The struck-through "MRP" and the "-18% off" badge were fabricated — a shop
- * that prices by weight does not run a permanent discount — so both are gone.
+ * Catalogue card.
+ *
+ * Dense two-up mobile grid: 4:5 photo, honest certificate badge (never a
+ * "bestseller" or "COD" claim we cannot prove), wishlist heart, two-line name,
+ * the live price with the previous-rate price struck through, the per-gram
+ * move, a real low-stock line taken from inventory, and add-to-cart.
  */
 export function ProductCard({
   product,
@@ -25,11 +29,12 @@ export function ProductCard({
 }) {
   const wishlist = useWishlist();
   const saved = wishlist.items.some((i) => i.slug === product.slug);
-  const festive = product.badges.find((b) => /festiv|diwali|akshaya|karwa/i.test(b));
+  const badge = product.certifications[0] ?? null;
+  const lowStock = product.stock > 0 && product.stock <= 2;
 
   return (
     <article className={cn("group relative flex flex-col", className)}>
-      <div className="relative">
+      <div className="relative overflow-hidden bg-peach/40">
         <Link href={`/products/${product.slug}`} className="block">
           <ImageSlot
             src={product.images[0]}
@@ -41,9 +46,9 @@ export function ProductCard({
           />
         </Link>
 
-        {festive ? (
-          <span className="absolute left-2 top-2 rounded-control bg-gold-light px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-burgundy-dark">
-            {festive}
+        {badge ? (
+          <span className="absolute left-0 top-2 bg-burgundy px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.12em] text-cream">
+            {badge}
           </span>
         ) : null}
 
@@ -60,27 +65,43 @@ export function ProductCard({
           }
           aria-label={saved ? `Remove ${product.name} from saved pieces` : `Save ${product.name}`}
           aria-pressed={saved}
-          className="absolute right-2 top-2 grid h-11 w-11 place-items-center rounded-full border border-burgundy/10 bg-white/95 text-burgundy shadow-sm hover:border-burgundy/30"
+          className="absolute right-1.5 top-1.5 grid h-11 w-11 place-items-center rounded-full text-burgundy transition-colors hover:text-burgundy-dark"
         >
-          <IconHeart size={18} className={cn(saved && "fill-burgundy")} />
+          <IconHeart size={19} className={cn(saved && "fill-burgundy")} />
         </button>
       </div>
 
-      <div className="flex flex-1 flex-col pt-3">
-        <h3 className="text-20 leading-tight text-navy">
-          <Link href={`/products/${product.slug}`} className="hover:text-copper-dark">
+      <div className="flex flex-1 flex-col pt-2.5">
+        <h3 className="line-clamp-2 text-[13.5px] leading-snug text-ink">
+          <Link href={`/products/${product.slug}`} className="hover:text-burgundy">
             {product.name}
           </Link>
         </h3>
-        <p className="mt-1 text-12 uppercase tracking-label text-stone">
+        <p className="mt-1 text-[10px] uppercase tracking-[0.08em] text-bodygrey">
           {product.purity} {product.metal === "SILVER" ? "silver" : product.metal.toLowerCase()} · {product.weight} g
           {product.gemstoneSlug && product.gemstoneSlug !== "diamond"
             ? ` · ${product.gemstoneSlug.replace("-", " ")}`
             : ""}
         </p>
-        <div className="mt-auto flex items-end justify-between gap-3 pt-3">
-          <p className="text-16 text-navy">{inr(product.price)}</p>
-          <p className="text-12 text-stone">{product.inStock ? "At the counter" : "Made to order"}</p>
+
+        <LivePrice
+          metal={product.metal}
+          purity={product.purity}
+          weight={product.weight}
+          makingPct={product.makingPct}
+          gemstoneValue={product.gemstoneValue}
+          size="sm"
+          className="mt-2"
+        />
+
+        {lowStock ? (
+          <p className="mt-2 bg-gold-light/35 py-1 text-center text-[9.5px] uppercase tracking-[0.14em] text-gold-dark">
+            Only {product.stock} left
+          </p>
+        ) : null}
+
+        <div className="mt-auto pt-2.5">
+          <AddToCartButton product={product} />
         </div>
       </div>
     </article>

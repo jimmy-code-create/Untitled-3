@@ -135,11 +135,7 @@ export function Navbar({
 
           {/* Search + rate strip */}
           <SearchBar />
-          <RateTicker
-            initialRates={rates}
-            initialUpdatedAt={rateUpdatedAt}
-            initialStaleLabel={staleLabel}
-          />
+          <RateTicker />
         </header>
       </div>
 

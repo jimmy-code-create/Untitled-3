@@ -72,7 +72,7 @@ export default async function CollectionPage({
     q: sp.q,
     occasion: sp.occasion,
     gemstone: sp.gemstone,
-    limit: 9,
+    limit: 24,
   });
 
   const info = TITLES[slug] ?? TITLES.all;

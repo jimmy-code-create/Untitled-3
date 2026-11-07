@@ -1,8 +1,11 @@
 import { computeBreakup, DEFAULT_RATES, rateKey, type RateMap } from "./pricing";
 import { products as catalogProducts, type CatalogProduct } from "./catalog";
+import { bulkProducts } from "./catalog-bulk";
 import { readDemo, writeDemo, type DemoEnquiry, type DemoOrder, type DemoRate } from "./demo-db";
 import { orderNumber } from "./utils";
 import { mergeSettings, type ShopSettings } from "./settings";
+import { convertSpotToRates } from "./rate-math";
+import { readSpot } from "./spot-cache";
 
 /**
  * Repository layer. Every read/write goes through here.
@@ -36,6 +39,15 @@ export interface ProductFilters {
 
 let prismaPromise: Promise<any> | null = null;
 
+/** The hand-written pieces plus the generated house line (1,000+ SKUs). */
+export const allCatalogProducts: CatalogProduct[] = [...catalogProducts, ...bulkProducts];
+
+/** Append the house line without duplicating anything already in the store. */
+function withHouseLine(base: CatalogProduct[]) {
+  const seen = new Set(base.map((p) => p.slug));
+  return [...base, ...bulkProducts.filter((p) => !seen.has(p.slug))];
+}
+
 export function hasDatabase() {
   return Boolean(process.env.DATABASE_URL);
 }
@@ -62,6 +74,27 @@ export async function getPrisma(): Promise<any | null> {
 /* ────────────────────────────── rates ────────────────────────────── */
 
 export async function getRates(): Promise<RateMap> {
+  const stored = await storedRates();
+  const settings = await getSettings();
+  const config = settings.rateConfig;
+  if (config.provider === "manual") return stored;
+
+  // Live overlay: the 3-minute proxy cache supplies the spot snapshot, so this
+  // is cheap and every visitor sees the same number without extra upstream calls.
+  const spot = await readSpot(config.provider);
+  if (!spot) return stored;
+
+  const computed = convertSpotToRates(spot, config);
+  const next: RateMap = { ...stored };
+  for (const [purity, value] of Object.entries(computed)) {
+    const live = purity.startsWith("SILVER") ? config.useLiveFeed.silver : config.useLiveFeed.gold;
+    if (live && value > 0) next[purity] = Math.round(value + config.shopRulePerGram);
+  }
+  return next;
+}
+
+/** The owner's published rows — also the fallback when no feed answers. */
+async function storedRates(): Promise<RateMap> {
   const prisma = await getPrisma();
   if (prisma) {
     try {
@@ -292,6 +325,8 @@ export async function listProducts(filters: ProductFilters = {}) {
     base = demo.products;
   }
 
+  base = withHouseLine(base);
+
   let list = base.map((p) => decorate(p, rates)).filter((p) => matches(p, filters));
   list = sortProducts(list, filters.sort);
   const total = list.length;
@@ -346,7 +381,7 @@ export async function getProduct(slug: string): Promise<ProductView | null> {
     }
   }
   const demo = readDemo();
-  const found = demo.products.find((p) => p.slug === slug);
+  const found = demo.products.find((p) => p.slug === slug) ?? bulkProducts.find((p) => p.slug === slug);
   return found ? decorate(found, rates) : null;
 }
 
@@ -684,7 +719,7 @@ export async function getStats() {
       .reduce((s, o) => s + o.total, 0);
     days.push({ label: day.toLocaleDateString("en-IN", { day: "2-digit", month: "short" }), value });
   }
-  const metalOf = new Map(catalogProducts.map((p) => [p.slug, p.metal]));
+  const metalOf = new Map(allCatalogProducts.map((p) => [p.slug, p.metal]));
   const byCategory = ["GOLD", "DIAMOND", "GEMSTONE", "SILVER"].map((metal) => ({
     label: metal,
     value: orders.reduce(

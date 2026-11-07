@@ -153,10 +153,14 @@ export function RateEditor({
 
       {!liveConfigured ? (
         <p className="rounded-card border border-burgundy/10 bg-white px-4 py-3 text-[11px] text-bodygrey">
-          {cfg.provider === "metals-api" ? (
+          {cfg.provider === "metals-api" || cfg.provider === "goldpricez" ? (
             <>
-              No <code className="text-burgundy">METAL_API_KEY</code> is set. The site is using the shop rates below.
-              Live feed rows stay empty until a key is configured — or switch the rate source to the free feed.
+              No{" "}
+              <code className="text-burgundy">
+                {cfg.provider === "goldpricez" ? "GOLDPRICEZ_API_KEY" : "METAL_API_KEY"}
+              </code>{" "}
+              is set. The site is using the shop rates below. Live feed rows stay empty until a key is configured — or
+              switch the rate source to the free feed.
             </>
           ) : (
             <>
@@ -286,6 +290,7 @@ export function RateEditor({
               onChange={(e) => setCfg({ ...cfg, provider: e.target.value as RateConfig["provider"] })}
               className="field mt-1 py-2 text-[13px]"
             >
+              <option value="goldpricez">Goldpricez (free tier, key required)</option>
               <option value="manual">Manual rates only</option>
               <option value="free">Free live market feed (no key)</option>
               <option value="metals-api">Metals-API (key required)</option>
@@ -338,12 +343,15 @@ export function RateEditor({
           <strong>
             {cfg.provider === "free"
               ? "Free market feed"
-              : cfg.provider === "metals-api"
-                ? "Metals-API spot feed"
-                : "Manual only"}
+              : cfg.provider === "goldpricez"
+                ? "Goldpricez spot feed"
+                : cfg.provider === "metals-api"
+                  ? "Metals-API spot feed"
+                  : "Manual only"}
           </strong>
-          . Live feeds read XAU/USD, XAG/USD and USD/INR, then convert per troy ounce (31.1035 g). The free feed
-          uses Yahoo Finance + Frankfurter FX — no signup, no quota.
+          . Live feeds read XAU/USD, XAG/USD and USD/INR, then convert per troy ounce (31.1035 g). Goldpricez is
+          cached for 3 minutes on the server (≈20 calls/hour, inside the free tier) and USD/INR for an hour; the
+          storefront polls only that cache every 45 seconds.
         </p>
       </div>
 

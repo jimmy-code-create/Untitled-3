@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { fail, ok, requireAdmin, rateLimit, clientIp } from "@/lib/api";
 import { getPublicRates, publishManualRates } from "@/lib/rates";
+import { RATE_PROVIDER } from "@/lib/rate-provider-config";
 
 export const dynamic = "force-dynamic";
 
@@ -13,7 +14,8 @@ export async function GET(req: Request) {
     { ...data },
     {
       headers: {
-        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+        // Matches the 3-minute upstream cache: every visitor shares one value.
+        "Cache-Control": `public, s-maxage=${RATE_PROVIDER.cache.proxySMaxAge}, stale-while-revalidate=300`,
       },
     },
   );

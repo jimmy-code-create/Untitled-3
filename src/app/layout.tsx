@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./fonts.css";
 import "./globals.css";
 import { Providers } from "@/components/providers/Providers";
+import { LiveRatesProvider } from "@/components/providers/LiveRatesProvider";
+import { DiwaliLayer } from "@/components/festive/DiwaliLayer";
 import { ChromeGate } from "@/components/layout/ChromeGate";
 import { TrackContact } from "@/components/analytics/TrackContact";
 import { getSettings } from "@/lib/repo";
@@ -81,16 +83,23 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en">
       <body className="bg-cream">
         <Providers>
-          <ChromeGate
-            rates={rateInfo.rates}
-            rateUpdatedAt={rateInfo.fetchedAt ?? rateInfo.updatedAt}
-            staleLabel={rateInfo.staleLabel}
-            settings={settings}
+          <LiveRatesProvider
+            initialRates={rateInfo.rates}
+            initialUpdatedAt={rateInfo.fetchedAt ?? rateInfo.updatedAt}
+            initialStaleLabel={rateInfo.staleLabel}
           >
-            {children}
-          </ChromeGate>
+            <ChromeGate
+              rates={rateInfo.rates}
+              rateUpdatedAt={rateInfo.fetchedAt ?? rateInfo.updatedAt}
+              staleLabel={rateInfo.staleLabel}
+              settings={settings}
+            >
+              {children}
+            </ChromeGate>
+          </LiveRatesProvider>
           <TrackContact />
         </Providers>
+        <DiwaliLayer />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <span className="sr-only">{fullAddress}</span>
       </body>

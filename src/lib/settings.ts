@@ -7,12 +7,13 @@
 
 export interface RateConfig {
   /**
-   * Provider:
+   * Provider (see src/lib/rate-provider-config.ts for endpoints and TTLs):
+   *  - "goldpricez"  → Goldpricez gold + silver spot (needs GOLDPRICEZ_API_KEY)
    *  - "manual"      → only the owner's rates (no network calls)
    *  - "free"        → keyless market feed (Yahoo Finance + Frankfurter FX)
    *  - "metals-api"  → Metals-API spot feed (needs METAL_API_KEY)
    */
-  provider: "manual" | "free" | "metals-api";
+  provider: "goldpricez" | "manual" | "free" | "metals-api";
   useLiveFeed: { gold: boolean; silver: boolean };
   /** India adjustment — configured by the owner, never hard-coded. */
   importDutyPct: number;
@@ -68,13 +69,15 @@ export const DEFAULT_SETTINGS: ShopSettings = {
   },
   socials: { instagram: "", facebook: "", youtube: "" },
   rateConfig: {
-    provider: "manual",
-    useLiveFeed: { gold: false, silver: false },
+    provider: "goldpricez",
+    useLiveFeed: { gold: true, silver: true },
     importDutyPct: 0,
     premiumPerGram: 0,
     shopRulePerGram: 0,
   },
 };
+
+const RATE_PROVIDERS: RateConfig["provider"][] = ["goldpricez", "manual", "free", "metals-api"];
 
 const bool = (v: unknown, fallback: boolean) => (typeof v === "boolean" ? v : fallback);
 const num = (v: unknown, fallback: number) =>
@@ -112,10 +115,12 @@ export function mergeSettings(raw: unknown): ShopSettings {
       youtube: str(socials.youtube, ""),
     },
     rateConfig: {
-      provider: rate.provider === "metals-api" || rate.provider === "free" ? rate.provider : "manual",
+      provider: RATE_PROVIDERS.includes(rate.provider)
+        ? (rate.provider as RateConfig["provider"])
+        : DEFAULT_SETTINGS.rateConfig.provider,
       useLiveFeed: {
-        gold: bool(live.gold, false),
-        silver: bool(live.silver, false),
+        gold: bool(live.gold, DEFAULT_SETTINGS.rateConfig.useLiveFeed.gold),
+        silver: bool(live.silver, DEFAULT_SETTINGS.rateConfig.useLiveFeed.silver),
       },
       importDutyPct: num(rate.importDutyPct, 0),
       premiumPerGram: num(rate.premiumPerGram, 0),

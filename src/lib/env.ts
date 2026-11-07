@@ -17,6 +17,9 @@ const schema = z.object({
   CLOUDINARY_API_SECRET: z.string().min(1).optional(),
   METAL_API_KEY: z.string().min(1).optional(),
   METAL_API_URL: z.string().url().optional(),
+  GOLDPRICEZ_API_KEY: z.string().min(1).optional(),
+  /** Used only when the free forex API is unreachable. */
+  USD_INR_FALLBACK: z.coerce.number().positive().optional(),
   CRON_SECRET: z.string().min(1).optional(),
 });
 
@@ -35,4 +38,5 @@ export const missingIntegrations = {
   uploads: !(env.CLOUDINARY_CLOUD_NAME && env.CLOUDINARY_API_KEY && env.CLOUDINARY_API_SECRET),
   authSecret: !env.NEXTAUTH_SECRET,
   database: !env.DATABASE_URL,
+  liveRates: !env.GOLDPRICEZ_API_KEY,
 } as const;

@@ -10,11 +10,14 @@ import { getPrisma, getRateRows, getRates, getSettings, saveRates, updateSetting
 import { readDemo, writeDemo, type DemoRateAudit, type DemoRateSnapshot } from "./demo-db";
 import type { RateConfig } from "./settings";
 import type { RateMap } from "./pricing";
+import { RATE_PROVIDER } from "./rate-provider-config";
+import { readSpot } from "./spot-cache";
+import { convertSpotToRates, exceedsGuard, SANITY_GUARD, TROY_OUNCE_GRAMS } from "./rate-math";
+
+export { convertSpotToRates, exceedsGuard, SANITY_GUARD, TROY_OUNCE_GRAMS };
 
 export type RateAudit = DemoRateAudit;
 
-export const TROY_OUNCE_GRAMS = 31.1035;
-export const SANITY_GUARD = 0.03; // max 3% movement before owner approval
 export const LIVE_WINDOW_MS = 30 * 60 * 1000;
 
 export const PURITIES = [
@@ -173,25 +176,8 @@ export async function fetchFreeSpotRates(): Promise<SpotRates | null> {
 }
 
 /* ───────────────────────── conversion + guard ───────────────────────── */
-export function convertSpotToRates(spot: SpotRates, config: RateConfig): Record<string, number> {
-  const duty = 1 + config.importDutyPct / 100;
-  const premium = config.premiumPerGram;
-  const goldPure = (spot.xauUsdOz * spot.usdInr * duty) / TROY_OUNCE_GRAMS + premium;
-  const silverPure = (spot.xagUsdOz * spot.usdInr * duty) / TROY_OUNCE_GRAMS + premium;
-
-  return {
-    "24K": Math.round(goldPure),
-    "22K": Math.round(goldPure * 0.916),
-    "18K": Math.round(goldPure * 0.75),
-    SILVER_999: Math.round(silverPure),
-    SILVER_925: Math.round(silverPure * 0.925),
-  };
-}
-
-export function exceedsGuard(previous: number, next: number, threshold = SANITY_GUARD) {
-  if (!(previous > 0)) return false;
-  return Math.abs(next - previous) / previous > threshold;
-}
+// convertSpotToRates / exceedsGuard live in ./rate-math so the repo layer can
+// share them without importing this module (and re-exported above for callers).
 
 /** Swappable provider contract. Add a new adapter here without touching pricing. */
 export interface RateProvider {
@@ -356,17 +342,17 @@ export async function getPublicRates(force = false): Promise<PublicRates> {
     .sort()
     .at(-1) ?? new Date().toISOString();
   const provider = settings.rateConfig.provider;
-  // "free" needs no key at all; "metals-api" needs METAL_API_KEY.
-  const liveConfigured = provider === "free" || (provider === "metals-api" && Boolean(process.env.METAL_API_KEY));
   const wantsLive = settings.rateConfig.useLiveFeed.gold || settings.rateConfig.useLiveFeed.silver;
+  const liveConfigured = provider !== "manual";
+  // The proxy cache is the authority: 3-minute metals, 1-hour FX, stale on error.
+  const spot = wantsLive && liveConfigured ? await readSpot(provider) : null;
   const feedSnapshots = snapshots.filter((s) => s.source !== "MANUAL");
   const latestFeed = feedSnapshots[0] ?? null;
   const pending = snapshots.filter((s) => s.status === "PENDING").map((s) => s.purity);
 
-  const ageMs = latestFeed ? Date.now() - new Date(latestFeed.fetchedAt).getTime() : Infinity;
   let status: RateStatus = "manual";
   if (wantsLive && liveConfigured) {
-    status = ageMs <= LIVE_WINDOW_MS ? "live" : "stale";
+    status = spot && !spot.stale ? "live" : "stale";
   }
   if (pending.length) status = "pending";
 
@@ -395,18 +381,18 @@ export async function getPublicRates(force = false): Promise<PublicRates> {
     };
   }
 
-  const updatedAt = latestFeed?.fetchedAt ?? manualUpdatedAt;
+  const updatedAt = spot?.fetchedAt ?? latestFeed?.fetchedAt ?? manualUpdatedAt;
   const stale = status === "stale";
 
   const value: PublicRates = {
     rates,
     status,
-    source: latestFeed?.source ?? "manual",
+    source: spot?.source ?? latestFeed?.source ?? "manual",
     snapshotId: latestFeed?.id ?? `manual-${updatedAt}`,
     updatedAt,
-    fetchedAt: latestFeed?.fetchedAt ?? null,
+    fetchedAt: spot?.fetchedAt ?? latestFeed?.fetchedAt ?? null,
     stale,
-    staleLabel: stale ? `Rate as of ${istLabel(updatedAt)} IST` : null,
+    staleLabel: stale ? `Updated ${istLabel(updatedAt)} IST` : null,
     changes,
     pending,
     liveConfigured,
@@ -436,15 +422,11 @@ export async function refreshRates(actor = "system"): Promise<RefreshResult> {
     return { ok: false, reason: "Provider is set to manual.", published: 0, pending: [] };
   }
 
-  const spot =
-    config.provider === "free" ? await fetchFreeSpotRates() : await fetchSpotRates();
+  const spot = await readSpot(config.provider);
   if (!spot) {
     return {
       ok: false,
-      reason:
-        config.provider === "free"
-          ? "Free market feed unreachable. Keeping the last published rate."
-          : "No METAL_API_KEY configured. Keeping the last published rate.",
+      reason: `${RATE_PROVIDER.providers[config.provider].label} unavailable. Keeping the last published rate.`,
       published: 0,
       pending: [],
     };

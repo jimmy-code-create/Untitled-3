@@ -21,7 +21,7 @@ interface Filters {
   sort: string;
 }
 
-const PAGE_SIZE = 9;
+const PAGE_SIZE = 24;
 
 const METALS = ["GOLD", "SILVER", "DIAMOND", "GEMSTONE"];
 const PURITIES = ["24K", "22K", "18K", "92.5"];
@@ -305,8 +305,11 @@ export function ProductListing({
                 <SlidersHorizontal className="h-3.5 w-3.5" /> {t("listing.filters")}
                 {activeCount > 0 && <span className="grid h-4 w-4 place-items-center rounded-full bg-copper text-[9px] text-white">{activeCount}</span>}
               </button>
-              <p className="text-[11px] text-stone">
-                <span className="text-navy">{total}</span> {t("listing.results")}
+              <p className="inline-flex items-baseline gap-1.5 rounded-full border border-burgundy/15 bg-white px-3 py-1.5 text-[11px] text-stone shadow-sm">
+                <span className="text-[10px] uppercase tracking-[0.1em]">Showing</span>
+                <span className="rate-digits text-[13px] font-semibold text-burgundy">{products.length}</span>
+                <span className="text-stone/70">/</span>
+                <span className="rate-digits text-[13px] font-semibold text-ink">{total}</span>
                 {initialQuery && <span className="ml-1">for “{initialQuery}”</span>}
               </p>
             </div>
@@ -326,6 +329,25 @@ export function ProductListing({
                 <option value="rating">Top rated</option>
               </select>
             </label>
+          </div>
+
+          <div className="no-scrollbar -mx-5 mb-5 flex gap-2 overflow-x-auto px-5 sm:mx-0 sm:px-0">
+            {[{ slug: "", name: isHi ? "सभी" : "All" }, ...categories].map((c) => (
+              <button
+                key={c.slug || "all"}
+                type="button"
+                onClick={() => setFilters((f) => ({ ...f, category: c.slug }))}
+                aria-pressed={filters.category === c.slug}
+                className={cn(
+                  "shrink-0 whitespace-nowrap rounded-full border px-3.5 py-2 text-[11px] transition-colors",
+                  filters.category === c.slug
+                    ? "border-burgundy bg-burgundy text-cream"
+                    : "border-burgundy/20 bg-white text-charcoal/80 hover:border-burgundy/50",
+                )}
+              >
+                {"nameHi" in c && isHi ? c.nameHi : c.name}
+              </button>
+            ))}
           </div>
 
           {loading ? (

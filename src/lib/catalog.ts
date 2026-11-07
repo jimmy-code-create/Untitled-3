@@ -35,7 +35,7 @@ export interface CatalogProduct {
 export const categories = [
   { slug: "necklace", name: "Necklaces", nameHi: "हार", image: "/images/gold-chain-necklace.webp" },
   { slug: "earrings", name: "Earrings", nameHi: "कान के झुमके", image: "/images/sapphire-earrings.webp" },
-  { slug: "ring", name: "Rings", nameHi: "अंगूठी", image: "/images/diamond-rings.webp" },
+  { slug: "ring", name: "Rings", nameHi: "अंगूठी", image: "/images/rings/infinity-knot-gold.webp" },
   { slug: "bracelet", name: "Bracelets", nameHi: "ब्रेसलेट", image: "/images/diamond-bracelet.webp" },
   { slug: "bangle", name: "Bangles & Kada", nameHi: "कंगन व कड़े", image: "/images/rose-bangle.webp" },
   { slug: "payal", name: "Payal & Anklets", nameHi: "पायल", image: "/images/silver-payal.webp" },
@@ -110,7 +110,14 @@ export const collections = [
     name: "Gold",
     nameHi: "सोना",
     kicker: "Hallmarked 22K & 18K",
-    image: "/images/gold-chain-necklace.webp",
+    image: "/images/rings/infinity-knot-gold.webp",
+  },
+  {
+    slug: "silver",
+    name: "Silver",
+    nameHi: "चाँदी",
+    kicker: "925 hallmarked silver rings",
+    image: "/images/rings/five-petal-bloom-silver.webp",
   },
   {
     slug: "diamond",

@@ -183,7 +183,7 @@ export function CinematicHero() {
       {/* Actions, promise, proof. */}
       <div
         className={cn(
-          "relative z-20 flex flex-col items-center gap-5 px-5 pb-24 text-center transition-all delay-300 duration-1000 ease-out sm:gap-6 sm:px-8 sm:pb-16",
+          "relative z-20 flex flex-col items-center gap-5 px-5 pb-32 text-center transition-all delay-300 duration-1000 ease-out sm:gap-6 sm:px-8 sm:pb-20",
           mounted ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
         )}
       >

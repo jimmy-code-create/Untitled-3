@@ -14,6 +14,7 @@ export function FloatingHelper() {
   const pathname = usePathname();
   const { productName } = usePageMeta();
   const [showBubble, setShowBubble] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     try {
@@ -21,6 +22,14 @@ export function FloatingHelper() {
     } catch {
       setShowBubble(true);
     }
+  }, []);
+
+  /* Keep the hero clear: the speech pill only joins once the page moves. */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 420);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   if (pathname.startsWith("/admin")) return null;
@@ -41,7 +50,7 @@ export function FloatingHelper() {
 
   return (
     <div className="fixed bottom-4 right-4 z-[60] flex items-center gap-2 sm:bottom-6 sm:right-6">
-      {showBubble ? (
+      {showBubble && scrolled ? (
         <div className="flex max-w-[230px] items-center gap-2 rounded-control border border-white/10 bg-white/[0.04] py-2 pl-4 pr-1.5 shadow-card">
           <p className="text-[12px] leading-tight text-ink">Namaste! How can I help you?</p>
           <button

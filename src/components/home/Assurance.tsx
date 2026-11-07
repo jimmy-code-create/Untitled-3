@@ -2,8 +2,8 @@ import type { ShopSettings } from "@/lib/settings";
 
 function Emblem({ children }: { children: React.ReactNode }) {
   return (
-    <span className="relative grid h-24 w-24 place-items-center rounded-full bg-gradient-to-br from-gold-light to-gold text-white shadow-[0_10px_24px_-14px_rgba(169,114,42,0.85)] sm:h-28 sm:w-28">
-      <span className="absolute inset-1.5 rounded-full border border-white/35" aria-hidden />
+    <span className="relative grid h-24 w-24 place-items-center rounded-full border border-white/15 bg-white/[0.04] text-[#E4C68F] shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] sm:h-28 sm:w-28">
+      <span className="absolute inset-1.5 rounded-full border border-white/10" aria-hidden />
       {children}
     </span>
   );
@@ -73,7 +73,7 @@ export function Assurance({ settings }: { settings: ShopSettings }) {
             {visible.map((item) => (
               <div key={item.key} className="flex flex-col items-center text-center">
                 <Emblem>{item.icon}</Emblem>
-                <p className="mt-3 font-serif text-[17px] font-semibold leading-tight text-burgundy-dark sm:text-[19px]">
+                <p className="mt-3 font-serif text-[17px] leading-tight text-white sm:text-[19px]">
                   {item.title[0]}
                   <br />
                   {item.title[1]}

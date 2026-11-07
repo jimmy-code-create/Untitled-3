@@ -12,16 +12,13 @@ import { SHOP, cn, waLink } from "@/lib/utils";
 /**
  * Cinematic hero for the shop.
  *
- * The reference was a full-viewport travel landing (video plane, glass chrome,
- * two-line display headline, single CTA with a trust row). The same structure
- * is used here, but with the jewellery brand's own material: a slow crossfade
- * of counter photography instead of drone footage, the shop's serif instead of
- * a travel display face, and a live 24K rate chip so the hero says something
- * only this shop can say.
+ * Full-viewport photography, glass chrome and one display line — but laid out as
+ * a flex column (rail, headline, actions) rather than absolutely positioned
+ * blocks, so nothing collides on short phones.
  *
- * Motion rules: GSAP drives the pointer parallax (lerp 0.06) and the slow
- * Ken Burns push on each slide; entrances are CSS transitions so the first
- * paint is stable. Everything is skipped for prefers-reduced-motion.
+ * Motion: GSAP drives the pointer parallax (lerp 0.06) and the slow Ken Burns
+ * push; entrances are CSS transitions so first paint is stable. Everything is
+ * skipped for prefers-reduced-motion.
  */
 
 const SLIDES = [
@@ -49,7 +46,6 @@ export function CinematicHero() {
     return () => window.cancelAnimationFrame(id);
   }, []);
 
-  /* Auto-advance the photography, pause when the tab is hidden. */
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (paused) return;
@@ -63,22 +59,16 @@ export function CinematicHero() {
     return () => document.removeEventListener("visibilitychange", onVisibility);
   }, []);
 
-  /* Slow push on the visible slide — the still-photo stand-in for moving film. */
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const image = layers.current[active]?.querySelector("img");
     if (!image) return;
-    const tween = gsap.fromTo(
-      image,
-      { scale: 1.04 },
-      { scale: 1.16, duration: ROTATE_MS / 1000 + 1.8, ease: "none" },
-    );
+    const tween = gsap.fromTo(image, { scale: 1.04 }, { scale: 1.16, duration: ROTATE_MS / 1000 + 1.8, ease: "none" });
     return () => {
       tween.kill();
     };
   }, [active]);
 
-  /* Pointer parallax on the media plane: ±20px, eased at 0.06 per frame. */
   useEffect(() => {
     const plane = stage.current;
     if (!plane) return;
@@ -115,7 +105,7 @@ export function CinematicHero() {
   return (
     <section
       aria-label="JMD Gems & Jewellery — at the counter"
-      className="relative isolate h-[100svh] min-h-[640px] w-full overflow-hidden bg-black text-white"
+      className="relative isolate flex min-h-[100svh] w-full flex-col overflow-hidden bg-black text-white"
     >
       {/* Media plane — scaled 1.08 so the parallax never reveals an edge. */}
       <div
@@ -147,15 +137,15 @@ export function CinematicHero() {
       </div>
 
       {/* Legibility: floor, ceiling and a soft vignette, never a flat scrim. */}
-      <div aria-hidden className="absolute inset-0 z-10 bg-gradient-to-b from-black/75 via-black/25 to-black/85" />
+      <div aria-hidden className="absolute inset-0 z-10 bg-gradient-to-b from-black/80 via-black/35 to-black/90" />
       <div
         aria-hidden
-        className="absolute inset-0 z-10 bg-[radial-gradient(120%_85%_at_50%_0%,transparent_30%,rgba(0,0,0,0.55)_100%)]"
+        className="absolute inset-0 z-10 bg-[radial-gradient(120%_85%_at_50%_0%,transparent_28%,rgba(0,0,0,0.6)_100%)]"
       />
 
-      {/* Top rail: place, and the one number that changes every day. */}
-      <div className="absolute inset-x-0 top-0 z-20 flex items-start justify-between gap-4 px-5 pt-7 sm:px-10 sm:pt-8">
-        <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-white/75 sm:text-[11px]">
+      {/* Rail: place, and the one number that changes every day. */}
+      <div className="relative z-20 flex items-start justify-between gap-4 px-5 pt-7 sm:px-10 sm:pt-9">
+        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/70 sm:text-[11px]">
           Jagdamba Market · Hindaun
         </p>
 
@@ -170,40 +160,37 @@ export function CinematicHero() {
         </div>
       </div>
 
-      {/* Headline — two lines, the second quieter. */}
-      <div className="absolute inset-x-0 top-[104px] z-20 px-6 text-center sm:top-[120px]">
+      {/* Headline — the only display line on the page. */}
+      <div className="relative z-20 flex flex-1 items-center justify-center px-5 py-10 text-center sm:px-8">
         <h1
           className={cn(
-            "mx-auto max-w-[15ch] transition-all duration-1000 ease-out sm:max-w-none",
+            "mx-auto max-w-[13ch] transition-all duration-1000 ease-out sm:max-w-none",
             mounted ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           )}
           style={{
-            fontFamily: "'Fraunces', Georgia, serif",
-            fontSize: "clamp(40px, 5.4vw, 72px)",
-            lineHeight: 1.1,
-            letterSpacing: "-0.02em",
+            fontFamily: "'Instrument Serif', Georgia, serif",
+            fontSize: "clamp(42px, 7.2vw, 96px)",
+            lineHeight: 1.02,
+            letterSpacing: "-0.01em",
             fontWeight: 400,
           }}
         >
           <span className="block text-white">Nothing hidden in the gold.</span>
-          <span className="mt-1 block italic text-white/55">Nothing rushed in the choosing.</span>
+          <span className="mt-1 block italic text-[#E4C68F]/80">Nothing rushed in the choosing.</span>
         </h1>
       </div>
 
-      {/* Bottom block — promise, action, proof. */}
+      {/* Actions, promise, proof. */}
       <div
         className={cn(
-          "absolute inset-x-0 bottom-10 z-20 flex flex-col items-center gap-5 px-5 text-center transition-all delay-300 duration-1000 ease-out sm:bottom-14 sm:gap-6 sm:px-8",
+          "relative z-20 flex flex-col items-center gap-5 px-5 pb-24 text-center transition-all delay-300 duration-1000 ease-out sm:gap-6 sm:px-8 sm:pb-16",
           mounted ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
         )}
       >
-        <p className="max-w-[620px] text-[13.5px] leading-relaxed text-white sm:text-[15px]">
+        <p className="max-w-[620px] text-[13px] leading-relaxed text-white/85 sm:text-[15px]">
           Weight and today&apos;s rate, shown on the scale before you decide — 22K and 18K gold, diamonds,
           gemstones and 92.5 silver.
-          <span className="text-white/55">
-            {" "}
-            Ask for anything in the case and we will lay it out for you.
-          </span>
+          <span className="text-white/55"> Ask for anything in the case and we will lay it out for you.</span>
         </p>
 
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
@@ -220,39 +207,39 @@ export function CinematicHero() {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.14em] text-white/70 transition-colors hover:text-white"
+            className="liquid-glass inline-flex min-h-11 items-center gap-1.5 rounded-full px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.14em] text-white/85 transition-colors hover:text-white"
           >
             Ask us on WhatsApp
             <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden />
           </a>
         </div>
 
-        <p className="flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.14em] text-white/70 sm:text-[11px]">
+        <p className="flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.14em] text-white/55 sm:text-[11px]">
           <Lock size={13} strokeWidth={1.5} aria-hidden />
-          BIS hallmarked · priced by weight · {SHOP.address.city}
+          Purity marked · priced by weight · {SHOP.address.city}
         </p>
-      </div>
 
-      {/* Slide markers, quiet. */}
-      <div className="absolute bottom-5 right-4 z-20 hidden gap-1 sm:flex sm:bottom-8 sm:right-8" role="tablist" aria-label="Hero photographs">
-        {SLIDES.map((slide, index) => (
-          <button
-            key={slide.src}
-            type="button"
-            role="tab"
-            aria-selected={index === active}
-            aria-label={`Show photograph ${index + 1}`}
-            onClick={() => setActive(index)}
-            className="grid h-9 w-6 place-items-center"
-          >
-            <span
-              className={cn(
-                "block h-[2px] w-6 rounded-full transition-colors duration-300",
-                index === active ? "bg-white" : "bg-white/30 hover:bg-white/60",
-              )}
-            />
-          </button>
-        ))}
+        {/* Slide markers, quiet. */}
+        <div className="hidden gap-1 sm:flex" role="tablist" aria-label="Hero photographs">
+          {SLIDES.map((slide, index) => (
+            <button
+              key={slide.src}
+              type="button"
+              role="tab"
+              aria-selected={index === active}
+              aria-label={`Show photograph ${index + 1}`}
+              onClick={() => setActive(index)}
+              className="grid h-8 w-6 place-items-center"
+            >
+              <span
+                className={cn(
+                  "block h-[2px] w-6 rounded-full transition-colors duration-300",
+                  index === active ? "bg-white" : "bg-white/25 hover:bg-white/60",
+                )}
+              />
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );

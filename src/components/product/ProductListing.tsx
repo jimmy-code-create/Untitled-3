@@ -184,7 +184,7 @@ export function ProductListing({
   const sidebar = (
     <div>
       <div className="flex items-center justify-between pb-4">
-        <p className="font-serif text-xl text-navy">{t("listing.filters")}</p>
+        <p className="font-serif text-xl text-white">{t("listing.filters")}</p>
         {activeCount > 0 && (
           <button onClick={reset} className="text-[10px] uppercase tracking-widest2 text-copper-dark underline underline-offset-4">
             {t("listing.clear")}
@@ -305,7 +305,7 @@ export function ProductListing({
                 <SlidersHorizontal className="h-3.5 w-3.5" /> {t("listing.filters")}
                 {activeCount > 0 && <span className="grid h-4 w-4 place-items-center rounded-full bg-copper text-[9px] text-white">{activeCount}</span>}
               </button>
-              <p className="inline-flex items-baseline gap-1.5 rounded-full border border-burgundy/15 bg-white px-3 py-1.5 text-[11px] text-stone shadow-sm">
+              <p className="inline-flex items-baseline gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] text-stone shadow-sm">
                 <span className="text-[10px] uppercase tracking-[0.1em]">Showing</span>
                 <span className="rate-digits text-[13px] font-semibold text-burgundy">{products.length}</span>
                 <span className="text-stone/70">/</span>
@@ -341,8 +341,8 @@ export function ProductListing({
                 className={cn(
                   "shrink-0 whitespace-nowrap rounded-full border px-3.5 py-2 text-[11px] transition-colors",
                   filters.category === c.slug
-                    ? "border-burgundy bg-burgundy text-cream"
-                    : "border-burgundy/20 bg-white text-charcoal/80 hover:border-burgundy/50",
+                    ? "border-burgundy bg-white text-black"
+                    : "border-white/15 bg-white/[0.04] text-charcoal/80 hover:border-white/30",
                 )}
               >
                 {"nameHi" in c && isHi ? c.nameHi : c.name}
@@ -355,7 +355,7 @@ export function ProductListing({
               {Array.from({ length: 6 }).map((_, i) => (
                 <div key={i}>
                   <div className="skeleton aspect-[4/5] w-full" />
-                  <div className="border border-copper/10 bg-white p-4">
+                  <div className="border border-copper/10 bg-white/[0.04] p-4">
                     <div className="skeleton h-2 w-16" />
                     <div className="skeleton mt-2 h-4 w-3/4" />
                     <div className="skeleton mt-3 h-3 w-24" />
@@ -364,8 +364,8 @@ export function ProductListing({
               ))}
             </div>
           ) : products.length === 0 ? (
-            <div className="border border-copper/15 bg-white px-6 py-20 text-center">
-              <p className="font-serif text-2xl text-navy">{t("listing.empty")}</p>
+            <div className="border border-copper/15 bg-white/[0.04] px-6 py-20 text-center">
+              <p className="font-serif text-2xl text-white">{t("listing.empty")}</p>
               <p className="mt-2 text-[12px] text-stone">Try removing a filter, or ask us on WhatsApp — we may have it in the store.</p>
               <button onClick={reset} className="btn-outline mt-6">
                 {t("listing.clear")}
@@ -397,7 +397,7 @@ export function ProductListing({
       {drawer && (
         <div className="fixed inset-0 z-[85] lg:hidden">
           <div className="absolute inset-0 bg-navy/50 backdrop-blur-sm" onClick={() => setDrawer(false)} />
-          <div className="absolute inset-y-0 left-0 w-[86%] max-w-sm overflow-y-auto bg-ivory p-5">
+          <div className="absolute inset-y-0 left-0 w-[86%] max-w-sm overflow-y-auto bg-black p-5">
             <div className="mb-2 flex justify-end">
               <button onClick={() => setDrawer(false)} aria-label="Close filters" className="grid h-9 w-9 place-items-center border border-copper/25">
                 <X className="h-4 w-4" />

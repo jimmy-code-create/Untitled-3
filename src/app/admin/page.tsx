@@ -22,7 +22,7 @@ export default async function AdminDashboard() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="text-[9px] uppercase tracking-widest2 text-copper-dark">Dashboard</p>
-          <h1 className="mt-1 font-serif text-3xl text-navy">Namaste, JMD family</h1>
+          <h1 className="mt-1 font-serif text-3xl text-white">Namaste, JMD family</h1>
           <p className="mt-1 text-[11.5px] text-stone">Here is how the shop is doing right now.</p>
         </div>
         <Link href="/admin/products/new" className="btn-copper px-4 py-2.5 text-[9.5px]">
@@ -32,28 +32,28 @@ export default async function AdminDashboard() {
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {cards.map((c) => (
-          <div key={c.label} className="border border-copper/20 bg-white p-5">
+          <div key={c.label} className="border border-copper/20 bg-white/[0.04] p-5">
             <div className="flex items-start justify-between">
               <p className="text-[9px] uppercase tracking-widest2 text-stone">{c.label}</p>
               <c.icon className="h-4 w-4 text-copper-dark" strokeWidth={1.3} />
             </div>
-            <p className="mt-3 font-serif text-3xl text-navy">{c.value}</p>
+            <p className="mt-3 font-serif text-3xl text-white">{c.value}</p>
             <p className="mt-0.5 text-[10px] text-stone">{c.sub}</p>
           </div>
         ))}
       </div>
 
       <div className="grid gap-4 xl:grid-cols-[1.5fr_1fr]">
-        <div className="border border-copper/20 bg-white p-5">
+        <div className="border border-copper/20 bg-white/[0.04] p-5">
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="font-serif text-xl text-navy">Sales</h2>
+            <h2 className="font-serif text-xl text-white">Sales</h2>
             <span className="text-[9px] uppercase tracking-widest2 text-stone">Last 14 days</span>
           </div>
           <SalesChart days={stats.days} />
         </div>
 
-        <div className="border border-copper/20 bg-white p-5">
-          <h2 className="mb-4 font-serif text-xl text-navy">Top pieces</h2>
+        <div className="border border-copper/20 bg-white/[0.04] p-5">
+          <h2 className="mb-4 font-serif text-xl text-white">Top pieces</h2>
           <ul className="space-y-3">
             {stats.top.map((t, i) => (
               <li key={t.label} className="flex items-center gap-3">
@@ -86,9 +86,9 @@ export default async function AdminDashboard() {
         </div>
       </div>
 
-      <div className="border border-copper/20 bg-white">
+      <div className="border border-copper/20 bg-white/[0.04]">
         <div className="flex items-center justify-between border-b border-copper/15 px-5 py-4">
-          <h2 className="font-serif text-xl text-navy">Recent orders</h2>
+          <h2 className="font-serif text-xl text-white">Recent orders</h2>
           <Link href="/admin/orders" className="flex items-center gap-1 text-[9.5px] uppercase tracking-widest2 text-copper-dark">
             View all <ArrowUpRight className="h-3 w-3" />
           </Link>
@@ -97,7 +97,7 @@ export default async function AdminDashboard() {
           {orders.slice(0, 6).map((o) => (
             <div key={o.id} className="flex flex-wrap items-center justify-between gap-2 px-5 py-3">
               <div className="min-w-[140px]">
-                <p className="text-[11.5px] text-navy">{o.orderNumber}</p>
+                <p className="text-[11.5px] text-white">{o.orderNumber}</p>
                 <p className="text-[9.5px] text-stone">{o.customerName || o.email}</p>
               </div>
               <span className="text-[9px] uppercase tracking-widest2 text-copper-dark">{o.status}</span>

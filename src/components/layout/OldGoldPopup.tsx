@@ -82,7 +82,7 @@ export function OldGoldPopup({ settings }: { settings: ShopSettings }) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="oldgold-title"
-        className="relative w-full max-w-[390px] rounded-modal bg-cream px-5 py-7 shadow-popup sm:px-7"
+        className="relative w-full max-w-[390px] rounded-modal bg-black px-5 py-7 shadow-popup sm:px-7"
       >
         <button
           type="button"
@@ -105,7 +105,7 @@ export function OldGoldPopup({ settings }: { settings: ShopSettings }) {
         </p>
 
         {done ? (
-          <p className="mt-6 rounded-control bg-white px-4 py-4 text-center text-[12px] text-burgundy">
+          <p className="mt-6 rounded-control bg-white/[0.04] px-4 py-4 text-center text-[12px] text-burgundy">
             Dhanyavaad. We will call you about your old gold.
           </p>
         ) : (
@@ -133,7 +133,7 @@ export function OldGoldPopup({ settings }: { settings: ShopSettings }) {
               disabled={!valid || sending}
               className={`flex min-h-11 w-full items-center justify-center rounded-control px-5 text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors ${
                 valid
-                  ? "bg-burgundy text-white hover:bg-burgundy-dark"
+                  ? "bg-white text-black hover:bg-burgundy-dark"
                   : "cursor-not-allowed bg-[#d9a8b0]/70 text-white/90"
               }`}
             >

@@ -29,7 +29,7 @@ export default function ContactPage() {
                 <a
                   key={p}
                   href={telLink(p)}
-                  className="mt-2 flex min-h-11 items-center text-16 text-navy hover:text-copper-dark"
+                  className="mt-2 flex min-h-11 items-center text-16 text-white hover:text-copper-dark"
                 >
                   +91 {p}
                 </a>

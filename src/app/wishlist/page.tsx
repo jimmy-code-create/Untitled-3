@@ -15,7 +15,7 @@ export default function WishlistPage() {
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Wishlist" }]} />
         <header className="mb-10">
           <p className="label mb-2">Saved for later</p>
-          <h1 className="font-serif text-4xl text-navy sm:text-5xl">Your Wishlist</h1>
+          <h1 className="font-serif text-4xl text-white sm:text-5xl">Your Wishlist</h1>
         </header>
         <WishlistView />
       </div>

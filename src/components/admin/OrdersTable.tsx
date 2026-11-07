@@ -45,7 +45,7 @@ export function OrdersTable({ orders }: { orders: DemoOrder[] }) {
   return (
     <div className="space-y-3">
       <div className="flex flex-wrap items-center gap-2">
-        <div className="flex flex-1 items-center gap-2 border border-copper/25 bg-white px-3 py-2 sm:max-w-xs">
+        <div className="flex flex-1 items-center gap-2 border border-copper/25 bg-white/[0.04] px-3 py-2 sm:max-w-xs">
           <Search className="h-3.5 w-3.5 text-stone" />
           <input
             value={query}
@@ -54,7 +54,7 @@ export function OrdersTable({ orders }: { orders: DemoOrder[] }) {
             className="w-full bg-transparent text-[11.5px] focus:outline-none"
           />
         </div>
-        <select value={filter} onChange={(e) => setFilter(e.target.value)} className="border border-copper/25 bg-white px-3 py-2 text-[11px]">
+        <select value={filter} onChange={(e) => setFilter(e.target.value)} className="border border-copper/25 bg-white/[0.04] px-3 py-2 text-[11px]">
           <option value="">All statuses</option>
           {STATUSES.map((s) => (
             <option key={s} value={s}>{s}</option>
@@ -63,7 +63,7 @@ export function OrdersTable({ orders }: { orders: DemoOrder[] }) {
         <span className="text-[10px] uppercase tracking-widest2 text-stone">{visible.length} orders</span>
       </div>
 
-      <div className="overflow-x-auto border border-copper/20 bg-white">
+      <div className="overflow-x-auto border border-copper/20 bg-white/[0.04]">
         <table className="w-full min-w-[860px] text-left">
           <thead>
             <tr className="border-b border-copper/15 text-[9px] uppercase tracking-widest2 text-stone">
@@ -80,7 +80,7 @@ export function OrdersTable({ orders }: { orders: DemoOrder[] }) {
             {visible.map((o) => (
               <tr key={o.id} className="align-top hover:bg-lilacsoft/30">
                 <td className="px-4 py-3">
-                  <p className="text-[11.5px] text-navy">{o.orderNumber}</p>
+                  <p className="text-[11.5px] text-white">{o.orderNumber}</p>
                   <p className="text-[9px] text-stone">{formatDate(o.createdAt)}</p>
                   <p className="mt-0.5 text-[8.5px] uppercase tracking-wider text-copper-dark">{o.fulfillment}</p>
                 </td>
@@ -108,7 +108,7 @@ export function OrdersTable({ orders }: { orders: DemoOrder[] }) {
                   <select
                     value={o.status}
                     onChange={(e) => update(o, { status: e.target.value })}
-                    className="border border-copper/25 bg-white px-2 py-1 text-[10px]"
+                    className="border border-copper/25 bg-white/[0.04] px-2 py-1 text-[10px]"
                   >
                     {STATUSES.map((s) => (
                       <option key={s} value={s}>{s}</option>

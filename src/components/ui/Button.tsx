@@ -8,12 +8,12 @@ const base =
   "inline-flex min-h-11 items-center justify-center gap-2 rounded-control px-6 text-12 uppercase tracking-label transition-colors duration-300 disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  navy: "bg-burgundy-dark text-cream hover:bg-burgundy",
-  copper: "border border-burgundy bg-burgundy text-white hover:border-burgundy-dark hover:bg-burgundy-dark",
-  outline: "border border-burgundy/40 text-burgundy hover:bg-burgundy hover:text-white",
-  outlineLight: "border border-gold-light/50 text-cream hover:bg-gold-light hover:text-burgundy-dark",
+  navy: "bg-burgundy-dark text-black hover:bg-white",
+  copper: "border border-burgundy bg-white text-black hover:border-burgundy-dark hover:bg-burgundy-dark",
+  outline: "border border-white/25 text-burgundy hover:bg-white hover:text-black",
+  outlineLight: "border border-gold-light/50 text-cream hover:bg-gold-light hover:text-white",
   whatsapp: "bg-whatsapp text-white hover:bg-[#0B6231]",
-  quiet: "px-0 text-burgundy underline decoration-burgundy/30 underline-offset-4 hover:text-burgundy-dark",
+  quiet: "px-0 text-burgundy underline decoration-burgundy/30 underline-offset-4 hover:text-white",
 };
 
 const sizes: Record<Size, string> = {

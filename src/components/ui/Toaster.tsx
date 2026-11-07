@@ -23,7 +23,7 @@ export function Toaster() {
               <Check className="h-3 w-3" strokeWidth={2} />
             </span>
             <span>
-              <span className="block text-[12px] font-medium text-navy">{t.title}</span>
+              <span className="block text-[12px] font-medium text-white">{t.title}</span>
               {t.sub && <span className="mt-0.5 block text-[10.5px] text-stone">{t.sub}</span>}
             </span>
           </motion.button>

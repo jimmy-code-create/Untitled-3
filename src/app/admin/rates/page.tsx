@@ -11,7 +11,7 @@ export default async function AdminRatesPage() {
     <div className="space-y-5">
       <div>
         <p className="text-[9px] uppercase tracking-widest2 text-copper-dark">Live rate control</p>
-        <h1 className="mt-1 font-serif text-3xl text-navy">Gold &amp; silver rates</h1>
+        <h1 className="mt-1 font-serif text-3xl text-white">Gold &amp; silver rates</h1>
         <p className="mt-1 max-w-2xl text-[11.5px] leading-relaxed text-stone">
           The ticker, product cards, product pages and checkout all use these rates. A feed move above 3% is held
           for your approval instead of being published automatically.

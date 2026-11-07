@@ -32,7 +32,7 @@ export function QuickView({ product, onClose }: { product: ProductView | null; o
             exit={{ y: 30, opacity: 0 }}
             transition={{ type: "spring", damping: 26, stiffness: 240 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative grid w-full max-w-3xl grid-cols-1 overflow-hidden bg-ivory shadow-card sm:grid-cols-2"
+            className="relative grid w-full max-w-3xl grid-cols-1 overflow-hidden bg-black shadow-card sm:grid-cols-2"
           >
             <button
               onClick={onClose}
@@ -48,12 +48,12 @@ export function QuickView({ product, onClose }: { product: ProductView | null; o
               <p className="label mb-2">
                 {product.purity} {product.metal === "SILVER" ? "Silver" : product.metal.toLowerCase()}
               </p>
-              <h3 className="font-serif text-3xl text-navy">{product.name}</h3>
+              <h3 className="font-serif text-3xl text-white">{product.name}</h3>
               <p className="mt-1 font-hindi text-[12px] text-stone">{product.nameHi}</p>
               <p className="mt-3 text-[12.5px] leading-relaxed text-stone">{product.subtitle}</p>
 
               <div className="mt-5 flex items-end gap-3">
-                <span className="font-serif text-2xl text-navy">{inr(product.price)}</span>
+                <span className="font-serif text-2xl text-white">{inr(product.price)}</span>
                 <span className="pb-1 text-[11px] text-stone line-through">{inr(product.mrp)}</span>
               </div>
               <p className="mt-1 text-[10px] text-stone">Inclusive of 3% GST · {product.weight} g</p>

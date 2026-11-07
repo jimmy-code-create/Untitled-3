@@ -64,7 +64,7 @@ function Card({
 
   return (
     <article className="flex min-w-0 flex-col">
-      <div className="relative w-full overflow-hidden rounded-photo border border-burgundy/10 bg-blush">
+      <div className="relative w-full overflow-hidden rounded-photo border border-white/10 bg-blush">
         <button
           type="button"
           onClick={() => onOpen(product)}
@@ -101,13 +101,13 @@ function Card({
           }
           aria-pressed={saved}
           aria-label={saved ? `Remove ${product.name} from saved pieces` : `Save ${product.name}`}
-          className="absolute right-1 top-1 grid h-10 w-10 place-items-center rounded-full bg-white/85 text-burgundy shadow-sm backdrop-blur transition-colors hover:bg-white"
+          className="absolute right-1 top-1 grid h-10 w-10 place-items-center rounded-full bg-white/85 text-burgundy shadow-sm backdrop-blur transition-colors hover:bg-white/[0.04]"
         >
           <Heart className={cn("h-[18px] w-[18px]", saved && "fill-burgundy")} strokeWidth={1.5} />
         </button>
 
         {showHallmark ? (
-          <span className="absolute left-0 top-2 bg-burgundy px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.12em] text-cream">
+          <span className="absolute left-0 top-2 bg-white px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.12em] text-black">
             BIS Hallmark
           </span>
         ) : null}
@@ -144,7 +144,7 @@ function Card({
           href={waLink(enquiryMessage(product, price))}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-2.5 inline-flex min-h-10 w-full items-center justify-center gap-1.5 rounded-control border border-burgundy px-2 text-[10.5px] font-semibold uppercase tracking-[0.08em] text-burgundy transition-colors hover:bg-burgundy hover:text-cream"
+          className="mt-2.5 inline-flex min-h-10 w-full items-center justify-center gap-1.5 rounded-control border border-burgundy px-2 text-[10.5px] font-semibold uppercase tracking-[0.08em] text-burgundy transition-colors hover:bg-white hover:text-black"
         >
           Enquire on WhatsApp
         </a>
@@ -189,8 +189,8 @@ function ProductSheet({
     <div className="fixed inset-0 z-[95] flex items-end justify-center sm:items-center" role="dialog" aria-modal="true" aria-label={product.name}>
       <button type="button" aria-label="Close details" onClick={onClose} className="absolute inset-0 bg-ink/55 backdrop-blur-sm" />
 
-      <div className="relative flex max-h-[92svh] w-full max-w-[520px] flex-col overflow-hidden rounded-t-[20px] bg-cream shadow-popup sm:max-h-[88vh] sm:rounded-card">
-        <div className="flex items-center justify-between gap-3 border-b border-burgundy/10 px-4 py-3">
+      <div className="relative flex max-h-[92svh] w-full max-w-[520px] flex-col overflow-hidden rounded-t-[20px] bg-black shadow-popup sm:max-h-[88vh] sm:rounded-card">
+        <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
           <div className="min-w-0">
             <p className="truncate text-[13px] font-medium text-ink">{product.name}</p>
             <p className="text-[10px] uppercase tracking-[0.12em] text-bodygrey">
@@ -201,7 +201,7 @@ function ProductSheet({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-burgundy/15 text-burgundy"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 text-burgundy"
           >
             <X className="h-4 w-4" />
           </button>
@@ -242,7 +242,7 @@ function ProductSheet({
               {price ? <p className="mt-1 text-[10.5px] text-bodygrey">{PRICE_NOTE}</p> : null}
             </div>
 
-            <dl className="grid grid-cols-2 gap-x-4 gap-y-2 border-y border-burgundy/10 py-3 text-[11.5px]">
+            <dl className="grid grid-cols-2 gap-x-4 gap-y-2 border-y border-white/10 py-3 text-[11.5px]">
               <div>
                 <dt className="text-[9px] uppercase tracking-[0.1em] text-bodygrey">Code</dt>
                 <dd className="text-ink">{product.code}</dd>
@@ -268,14 +268,14 @@ function ProductSheet({
                 href={waLink(enquiryMessage(product, price))}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control bg-burgundy px-4 text-[11px] font-semibold uppercase tracking-[0.08em] text-cream transition-colors hover:bg-burgundy-dark"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control bg-white px-4 text-[11px] font-semibold uppercase tracking-[0.08em] text-black transition-colors hover:bg-burgundy-dark"
               >
                 Enquire on WhatsApp
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </a>
               <a
                 href={telLink(SHOP.phones[0])}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control border border-burgundy/30 px-4 text-[11px] font-semibold uppercase tracking-[0.08em] text-burgundy transition-colors hover:border-burgundy"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control border border-white/20 px-4 text-[11px] font-semibold uppercase tracking-[0.08em] text-burgundy transition-colors hover:border-burgundy"
               >
                 <Phone className="h-3.5 w-3.5" />
                 Call store
@@ -284,7 +284,7 @@ function ProductSheet({
           </div>
 
           {similar.length ? (
-            <div className="border-t border-burgundy/10 px-4 py-4">
+            <div className="border-t border-white/10 px-4 py-4">
               <p className="label mb-2">Similar pieces</p>
               <div className="no-scrollbar flex snap-x gap-3 overflow-x-auto pb-1">
                 {similar.map((item) => (
@@ -294,7 +294,7 @@ function ProductSheet({
                     onClick={() => onSelect(item)}
                     className="w-[104px] shrink-0 snap-start text-left"
                   >
-                    <span className="relative block aspect-[4/5] overflow-hidden rounded-[8px] border border-burgundy/10 bg-white">
+                    <span className="relative block aspect-[4/5] overflow-hidden rounded-[8px] border border-white/10 bg-white/[0.04]">
                       <Image
                         src={item.thumb}
                         alt={item.name}
@@ -410,7 +410,7 @@ export function CatalogueBrowser({
   if (!catalogueProducts.length) {
     return (
       <div className="container-x pb-20">
-        <div className="rounded-card border border-burgundy/15 bg-white px-6 py-14 text-center">
+        <div className="rounded-card border border-white/10 bg-white/[0.04] px-6 py-14 text-center">
           <p className="font-serif text-2xl text-ink">The catalogue is being photographed</p>
           <p className="mx-auto mt-2 max-w-[46ch] text-[12.5px] leading-relaxed text-bodygrey">
             Every piece will be listed here with its code as the photographs come in. Until then, tell us what you are
@@ -440,7 +440,7 @@ export function CatalogueBrowser({
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search by code, e.g. R-001"
             aria-label="Search catalogue by code or name"
-            className="min-h-11 w-full rounded-control border border-burgundy/20 bg-white pl-9 pr-9 text-[12.5px] text-ink placeholder:text-bodygrey/70 focus:border-burgundy focus:outline-none"
+            className="min-h-11 w-full rounded-control border border-white/15 bg-white/[0.04] pl-9 pr-9 text-[12.5px] text-ink placeholder:text-bodygrey/70 focus:border-burgundy focus:outline-none"
           />
           {query ? (
             <button
@@ -455,7 +455,7 @@ export function CatalogueBrowser({
         </label>
 
         <div className="flex items-center justify-between gap-3 sm:justify-end">
-          <p className="inline-flex items-baseline gap-1.5 rounded-full border border-burgundy/15 bg-white px-3 py-1.5 text-[11px] text-bodygrey">
+          <p className="inline-flex items-baseline gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] text-bodygrey">
             <span className="text-[10px] uppercase tracking-[0.1em]">Showing</span>
             <span className="rate-digits text-[13px] font-semibold text-burgundy">{visible.length}</span>
             <span className="text-bodygrey/70">/</span>
@@ -465,12 +465,12 @@ export function CatalogueBrowser({
             type="button"
             onClick={() => setShowFilters((value) => !value)}
             aria-expanded={showFilters}
-            className="inline-flex min-h-10 items-center gap-2 rounded-control border border-burgundy/20 bg-white px-3 text-[10px] uppercase tracking-[0.1em] text-charcoal/80"
+            className="inline-flex min-h-10 items-center gap-2 rounded-control border border-white/15 bg-white/[0.04] px-3 text-[10px] uppercase tracking-[0.1em] text-charcoal/80"
           >
             <SlidersHorizontal className="h-3.5 w-3.5" />
             Filters
             {activeFilters ? (
-              <span className="grid h-4 min-w-4 place-items-center rounded-full bg-burgundy px-1 text-[9px] text-cream">
+              <span className="grid h-4 min-w-4 place-items-center rounded-full bg-white px-1 text-[9px] text-black">
                 {activeFilters}
               </span>
             ) : null}
@@ -486,7 +486,7 @@ export function CatalogueBrowser({
           aria-pressed={!category}
           className={cn(
             "shrink-0 snap-start whitespace-nowrap rounded-full border px-3.5 py-2 text-[11px] transition-colors",
-            !category ? "border-burgundy bg-burgundy text-cream" : "border-burgundy/20 bg-white text-charcoal/80",
+            !category ? "border-burgundy bg-white text-black" : "border-white/15 bg-white text-charcoal/80",
           )}
         >
           All <span className={cn("ml-1 text-[10px]", !category ? "text-cream/70" : "text-bodygrey")}>{scoped.length}</span>
@@ -500,8 +500,8 @@ export function CatalogueBrowser({
             className={cn(
               "shrink-0 snap-start whitespace-nowrap rounded-full border px-3.5 py-2 text-[11px] transition-colors",
               category === chip.slug
-                ? "border-burgundy bg-burgundy text-cream"
-                : "border-burgundy/20 bg-white text-charcoal/80",
+                ? "border-burgundy bg-white text-black"
+                : "border-white/15 bg-white/[0.04] text-charcoal/80",
             )}
           >
             {chip.label}{" "}
@@ -513,13 +513,13 @@ export function CatalogueBrowser({
       </div>
 
       {showFilters ? (
-        <div className="mt-3 grid gap-3 rounded-card border border-burgundy/15 bg-white p-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-3 grid gap-3 rounded-card border border-white/10 bg-white/[0.04] p-4 sm:grid-cols-2 lg:grid-cols-4">
           <label className="block">
             <span className="text-[9px] uppercase tracking-[0.1em] text-bodygrey">Purity</span>
             <select
               value={purity}
               onChange={(event) => setPurity(event.target.value)}
-              className="mt-1 min-h-10 w-full rounded-control border border-burgundy/20 bg-white px-2 text-[12px] text-ink"
+              className="mt-1 min-h-10 w-full rounded-control border border-white/15 bg-white/[0.04] px-2 text-[12px] text-ink"
             >
               <option value="">All</option>
               {purityOptions.map((option) => (
@@ -535,7 +535,7 @@ export function CatalogueBrowser({
             <select
               value={occasion}
               onChange={(event) => setOccasion(event.target.value)}
-              className="mt-1 min-h-10 w-full rounded-control border border-burgundy/20 bg-white px-2 text-[12px] text-ink"
+              className="mt-1 min-h-10 w-full rounded-control border border-white/15 bg-white/[0.04] px-2 text-[12px] text-ink"
             >
               <option value="">All</option>
               {occasionOptions.map((option) => (
@@ -560,7 +560,7 @@ export function CatalogueBrowser({
                 placeholder="Min"
                 aria-label="Minimum weight in grams"
                 disabled={!bounds}
-                className="min-h-10 w-full rounded-control border border-burgundy/20 bg-white px-2 text-[12px] text-ink disabled:bg-blush/40"
+                className="min-h-10 w-full rounded-control border border-white/15 bg-white/[0.04] px-2 text-[12px] text-ink disabled:bg-blush/40"
               />
               <span className="text-bodygrey">–</span>
               <input
@@ -572,7 +572,7 @@ export function CatalogueBrowser({
                 placeholder="Max"
                 aria-label="Maximum weight in grams"
                 disabled={!bounds}
-                className="min-h-10 w-full rounded-control border border-burgundy/20 bg-white px-2 text-[12px] text-ink disabled:bg-blush/40"
+                className="min-h-10 w-full rounded-control border border-white/15 bg-white/[0.04] px-2 text-[12px] text-ink disabled:bg-blush/40"
               />
             </div>
             {!bounds ? <p className="mt-1 text-[9.5px] text-bodygrey">No weights in this selection yet.</p> : null}
@@ -583,7 +583,7 @@ export function CatalogueBrowser({
             <select
               value={sort}
               onChange={(event) => setSort(event.target.value as SortKey)}
-              className="mt-1 min-h-10 w-full rounded-control border border-burgundy/20 bg-white px-2 text-[12px] text-ink"
+              className="mt-1 min-h-10 w-full rounded-control border border-white/15 bg-white/[0.04] px-2 text-[12px] text-ink"
             >
               <option value="featured">Featured</option>
               <option value="code">Code</option>
@@ -600,7 +600,7 @@ export function CatalogueBrowser({
       ) : null}
 
       {filtered.length === 0 ? (
-        <div className="mt-8 rounded-card border border-burgundy/15 bg-white px-6 py-14 text-center">
+        <div className="mt-8 rounded-card border border-white/10 bg-white/[0.04] px-6 py-14 text-center">
           <p className="font-serif text-xl text-ink">No pieces match this search</p>
           <p className="mt-2 text-[12px] text-bodygrey">Try another code, or ask us on WhatsApp — the piece may still be in the store.</p>
           <button type="button" onClick={reset} className="btn-outline mt-5">

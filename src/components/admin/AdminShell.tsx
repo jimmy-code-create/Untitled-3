@@ -66,7 +66,7 @@ export function AdminShell({
   );
 
   return (
-    <div className="min-h-screen bg-[#F5F1E9]">
+    <div className="min-h-screen bg-[#0B0B0B]">
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-[248px] flex-col bg-navy px-4 py-6 lg:flex">
         <div className="px-2">
           <Logo variant="light" size="sm" />
@@ -88,8 +88,8 @@ export function AdminShell({
       </aside>
 
       <div className="lg:pl-[248px]">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-copper/20 bg-ivory/90 px-4 backdrop-blur sm:px-6">
-          <button onClick={() => setOpen(true)} className="text-navy lg:hidden" aria-label="Open menu">
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-copper/20 bg-white/[0.04] px-4 backdrop-blur sm:px-6">
+          <button onClick={() => setOpen(true)} className="text-white lg:hidden" aria-label="Open menu">
             <Menu className="h-5 w-5" />
           </button>
           <div className="hidden items-center gap-2 text-[10px] uppercase tracking-widest2 text-stone sm:flex">

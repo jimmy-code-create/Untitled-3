@@ -59,7 +59,7 @@ export default async function GoldRateDisclaimerPage() {
                     <th scope="row" className="py-2 text-left font-normal text-charcoal/70">
                       {r.purity.replace("SILVER_", "Silver ")}
                     </th>
-                    <td className="py-2 text-right text-navy">{inr(r.ratePerGram)}/g</td>
+                    <td className="py-2 text-right text-white">{inr(r.ratePerGram)}/g</td>
                   </tr>
                 ))}
               </tbody>

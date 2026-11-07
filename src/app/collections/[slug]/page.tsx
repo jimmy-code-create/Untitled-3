@@ -105,7 +105,7 @@ export default async function CollectionPage({
         />
         <header className="border-b border-copper/15 pb-8">
           <p className="label mb-3">{info.kicker}</p>
-          <h1 className="font-serif text-4xl text-navy sm:text-5xl">{info.title}</h1>
+          <h1 className="font-serif text-4xl text-white sm:text-5xl">{info.title}</h1>
           <p className="mt-3 max-w-xl text-[13px] leading-relaxed text-stone">{info.sub}</p>
           <p className="mt-2 text-[11px] uppercase tracking-[0.1em] text-stone/80">
             {inScope.length} {inScope.length === 1 ? "piece" : "pieces"} listed

@@ -10,7 +10,7 @@ export function VisitStore() {
   const { t, isHi } = useLang();
 
   return (
-    <section id="visit" className="bg-ivory py-16 sm:py-24">
+    <section id="visit" className="bg-black py-16 sm:py-24">
       <div className="container-x">
         <SectionHeading
           kicker={isHi ? "जगदम्बा मार्केट, मोहन नगर" : "Jagdamba Market · Mohan Nagar"}
@@ -23,7 +23,7 @@ export function VisitStore() {
         />
         <div className="grid gap-6 lg:grid-cols-[1fr_1.15fr]">
           <Reveal>
-            <div className="flex h-full flex-col justify-between border border-copper/20 bg-white p-6 sm:p-8">
+            <div className="flex h-full flex-col justify-between border border-copper/20 bg-white/[0.04] p-6 sm:p-8">
               <div>
                 <div className="relative mb-6 aspect-[16/10] overflow-hidden">
                   <Image
@@ -34,7 +34,7 @@ export function VisitStore() {
                     sizes="(max-width: 1024px) 100vw, 40vw"
                     className="h-full w-full object-cover"
                   />
-                  <span className="absolute bottom-3 left-3 bg-ivory/90 px-2.5 py-1 text-[8.5px] uppercase tracking-widest2 text-navy">
+                  <span className="absolute bottom-3 left-3 bg-white/[0.04] px-2.5 py-1 text-[8.5px] uppercase tracking-widest2 text-white">
                     Our counter · Hindaun
                   </span>
                 </div>

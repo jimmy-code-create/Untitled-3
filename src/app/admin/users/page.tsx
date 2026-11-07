@@ -9,10 +9,10 @@ export default async function AdminUsersPage() {
     <div className="space-y-5">
       <div>
         <p className="text-[9px] uppercase tracking-widest2 text-copper-dark">Relationships</p>
-        <h1 className="mt-1 font-serif text-3xl text-navy">Customers</h1>
+        <h1 className="mt-1 font-serif text-3xl text-white">Customers</h1>
         <p className="mt-1 text-[11.5px] text-stone">{users.length} people have signed in or ordered.</p>
       </div>
-      <div className="overflow-x-auto border border-copper/20 bg-white">
+      <div className="overflow-x-auto border border-copper/20 bg-white/[0.04]">
         <table className="w-full min-w-[600px] text-left">
           <thead>
             <tr className="border-b border-copper/15 text-[9px] uppercase tracking-widest2 text-stone">
@@ -26,7 +26,7 @@ export default async function AdminUsersPage() {
           <tbody className="divide-y divide-copper/10">
             {users.map((u) => (
               <tr key={u.id} className="hover:bg-lilacsoft/30">
-                <td className="px-4 py-3 text-[11.5px] text-navy">{u.name}</td>
+                <td className="px-4 py-3 text-[11.5px] text-white">{u.name}</td>
                 <td className="px-4 py-3 text-[11px] text-stone">{u.phone || "—"}</td>
                 <td className="px-4 py-3 text-[11px] text-stone">{u.email || "—"}</td>
                 <td className="px-4 py-3">

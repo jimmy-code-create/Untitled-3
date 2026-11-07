@@ -21,7 +21,7 @@ export function GemstoneGallery() {
   const gem = gemstones[active];
 
   return (
-    <section className="section border-y border-navy/15 bg-ivory">
+    <section className="section border-y border-navy/15 bg-black">
       <div className="container-x grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,380px)] lg:gap-16">
         <div>
           <SectionHeading
@@ -45,7 +45,7 @@ export function GemstoneGallery() {
                   aria-pressed={active === i}
                   className={cn(
                     "flex min-h-11 w-full items-center gap-3 px-1 py-4 text-left text-16 transition-colors",
-                    active === i ? "text-navy" : "text-charcoal/75 hover:text-navy",
+                    active === i ? "text-white" : "text-charcoal/75 hover:text-white",
                   )}
                 >
                   <span
@@ -64,12 +64,12 @@ export function GemstoneGallery() {
 
         <aside className="border-t border-navy/15 pt-6 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
           <p className="label">{lang === "hi" ? "चुना हुआ रत्न" : "Selected stone"}</p>
-          <h3 className="mt-3 text-28 text-navy">{lang === "hi" ? gem.nameHi : gem.name}</h3>
+          <h3 className="mt-3 text-28 text-white">{lang === "hi" ? gem.nameHi : gem.name}</h3>
           <p className="mt-3 font-hindi text-14 text-stone">{lang === "hi" ? gem.benefitHi : gem.benefit}</p>
           <p className="mt-3 text-12 uppercase tracking-label text-copper-dark">{gem.originNote}</p>
           <Link
             href={`/collections/gemstones?gemstone=${gem.slug}`}
-            className="mt-6 inline-flex min-h-11 items-center border-b border-copper/40 text-12 uppercase tracking-label text-copper-dark hover:border-navy hover:text-navy"
+            className="mt-6 inline-flex min-h-11 items-center border-b border-copper/40 text-12 uppercase tracking-label text-copper-dark hover:border-navy hover:text-white"
           >
             Pieces with {gem.name}
           </Link>

@@ -20,10 +20,10 @@ export function VisitShop() {
   };
 
   return (
-    <section id="visit" className="bg-cream py-14 sm:py-16">
+    <section id="visit" className="bg-black py-14 sm:py-16">
       <div className="container-x">
         <form onSubmit={ask} className="mx-auto flex max-w-[520px] flex-col gap-2">
-          <div className="flex h-12 items-center gap-2 rounded-control border border-burgundy/20 bg-white pl-5 pr-1.5">
+          <div className="flex h-12 items-center gap-2 rounded-control border border-white/15 bg-white/[0.04] pl-5 pr-1.5">
             <label htmlFor="visit-pincode" className="sr-only">
               Your pincode
             </label>
@@ -38,7 +38,7 @@ export function VisitShop() {
             <button
               type="submit"
               disabled={!/^\d{6}$/.test(pincode)}
-              className="min-h-10 rounded-control bg-burgundy px-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-white disabled:opacity-40"
+              className="min-h-10 rounded-control bg-white px-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-black disabled:opacity-40"
             >
               Ask shop
             </button>
@@ -58,8 +58,8 @@ export function VisitShop() {
         </div>
 
         <div className="mx-auto mt-6 max-w-[420px]">
-          <div className="arch-card flex flex-col items-center bg-white px-6 pb-7 pt-12">
-            <IconShopfront size={132} className="text-burgundy/75" />
+          <div className="arch-card flex flex-col items-center bg-white/[0.04] px-6 pb-7 pt-12">
+            <IconShopfront size={132} className="text-[#E4C68F]/60" />
             <h3 className="mt-3 font-serif text-28 font-semibold text-ink">Hindaun</h3>
             <p className="mt-1 text-center text-[12px] font-medium text-gold-dark">
               Jagdamba Market, Mohan Nagar,
@@ -68,19 +68,19 @@ export function VisitShop() {
             </p>
           </div>
 
-          <div className="mt-7 rounded-card bg-gradient-to-br from-burgundy to-burgundy-dark p-5 text-center shadow-card">
+          <div className="liquid-glass mt-7 rounded-card p-5 text-center">
             <a
               href={mapsLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-control bg-white px-6 text-[10px] font-semibold uppercase tracking-[0.12em] text-burgundy transition-colors hover:bg-cream"
+              className="inline-flex min-h-11 items-center gap-2 rounded-control bg-white px-6 text-[10px] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-white/90"
             >
               <IconDirections size={15} /> Get directions
             </a>
-            <p className="mt-2 text-[10px] text-cream/70">
+            <p className="mt-2 text-[10px] text-white/60">
               {SHOP.address.line1} · {SHOP.address.city} {SHOP.address.pincode}
             </p>
-            <p className="mt-1 text-[10px] text-gold-light/80">[CONFIRM WITH SHOP] opening hours</p>
+            <p className="mt-1 text-[10px] text-[#E4C68F]/70">[CONFIRM WITH SHOP] opening hours</p>
           </div>
         </div>
       </div>

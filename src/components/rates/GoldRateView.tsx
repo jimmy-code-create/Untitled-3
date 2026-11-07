@@ -48,7 +48,7 @@ function Chart({ points }: { points: SeriesPoint[] }) {
 
   if (series.length < 2) {
     return (
-      <div className="flex h-[180px] items-center justify-center rounded-photo border border-burgundy/10 bg-white px-6 text-center">
+      <div className="flex h-[180px] items-center justify-center rounded-photo border border-white/10 bg-white/[0.04] px-6 text-center">
         <p className="text-[12px] text-bodygrey">
           The 30-day chart starts building from the first saved rate snapshot. No history is invented.
         </p>
@@ -71,9 +71,9 @@ function Chart({ points }: { points: SeriesPoint[] }) {
   });
 
   return (
-    <div className="rounded-photo border border-burgundy/10 bg-white p-3">
+    <div className="rounded-photo border border-white/10 bg-white/[0.04] p-3">
       <svg viewBox={`0 0 ${width} ${height}`} className="h-auto w-full" role="img" aria-label="24K gold rate, last 30 days">
-        <rect width={width} height={height} fill="#FDF1E6" rx="12" />
+        <rect width={width} height={height} fill="#0B0B0B" rx="12" />
         {[0, 0.5, 1].map((f) => (
           <line
             key={f}
@@ -162,7 +162,7 @@ export function GoldRateView({
   }, []);
 
   return (
-    <div className="bg-cream pb-16">
+    <div className="bg-black pb-16">
       <div className="container-x">
         <div className="mx-auto max-w-[760px] pt-8 text-center">
           <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-dark">
@@ -178,11 +178,11 @@ export function GoldRateView({
           </p>
         </div>
 
-        <div className="mx-auto mt-6 max-w-[760px] overflow-hidden rounded-card border border-burgundy/10 bg-white shadow-card">
+        <div className="mx-auto mt-6 max-w-[760px] overflow-hidden rounded-card border border-white/10 bg-white/[0.04] shadow-card">
           <div className="overflow-x-auto">
             <table className={`rate-digits w-full min-w-[560px] text-left text-[12px] transition-opacity duration-200 ${flash ? "animate-rate-fade" : ""}`}>
               <thead>
-                <tr className="border-b border-burgundy/10 bg-blush/40 text-[10px] uppercase tracking-[0.1em] text-gold-dark">
+                <tr className="border-b border-white/10 bg-blush/40 text-[10px] uppercase tracking-[0.1em] text-gold-dark">
                   <th className="px-4 py-3 font-semibold">Metal</th>
                   {GRAMS.map((g) => (
                     <th key={g} className="px-3 py-3 text-right font-semibold">
@@ -232,7 +232,7 @@ export function GoldRateView({
           <Chart points={history} />
         </div>
 
-        <div className="mx-auto mt-6 max-w-[760px] rounded-photo border border-burgundy/10 bg-peach px-5 py-4">
+        <div className="mx-auto mt-6 max-w-[760px] rounded-photo border border-white/10 bg-peach px-5 py-4">
           <p className="text-[11px] leading-relaxed text-bodygrey">
             <strong className="text-ink">Disclaimer:</strong> Rates are indicative. Final price is as per billing
             at the shop.

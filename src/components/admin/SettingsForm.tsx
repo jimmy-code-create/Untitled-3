@@ -34,8 +34,8 @@ export function SettingsForm({ settings }: { settings: ShopSettings }) {
 
   return (
     <div className="space-y-5">
-      <section className="rounded-card border border-burgundy/10 bg-white p-5 shadow-card">
-        <h2 className="font-serif text-xl text-navy">Announcement &amp; offers</h2>
+      <section className="rounded-card border border-white/10 bg-white/[0.04] p-5 shadow-card">
+        <h2 className="font-serif text-xl text-white">Announcement &amp; offers</h2>
         <p className="mt-1 text-[11px] text-stone">
           Only what you type here appears on the site. Empty offer fields show <strong>[OFFER]</strong>.
         </p>
@@ -95,8 +95,8 @@ export function SettingsForm({ settings }: { settings: ShopSettings }) {
         </button>
       </section>
 
-      <section className="rounded-card border border-burgundy/10 bg-white p-5 shadow-card">
-        <h2 className="font-serif text-xl text-navy">Assurances &amp; old gold</h2>
+      <section className="rounded-card border border-white/10 bg-white/[0.04] p-5 shadow-card">
+        <h2 className="font-serif text-xl text-white">Assurances &amp; old gold</h2>
         <p className="mt-1 text-[11px] text-stone">
           Only switched-on assurances appear on the home page. Keep a toggle off until the shop confirms the policy.
         </p>
@@ -109,7 +109,7 @@ export function SettingsForm({ settings }: { settings: ShopSettings }) {
               ["maintenance", "Lifetime Maintenance"],
             ] as const
           ).map(([key, label]) => (
-            <label key={key} className="flex min-h-11 items-center justify-between gap-3 rounded-[14px] border border-burgundy/10 bg-cream px-3">
+            <label key={key} className="flex min-h-11 items-center justify-between gap-3 rounded-[14px] border border-white/10 bg-black px-3">
               <span className="text-[12px] text-ink">{label}</span>
               <input
                 type="checkbox"
@@ -146,7 +146,7 @@ export function SettingsForm({ settings }: { settings: ShopSettings }) {
               maxLength={200}
             />
           </label>
-          <label className="flex min-h-11 items-center gap-2 rounded-control border border-burgundy/10 bg-cream px-4 text-[12px] text-ink">
+          <label className="flex min-h-11 items-center gap-2 rounded-control border border-white/10 bg-black px-4 text-[12px] text-ink">
             <input
               type="checkbox"
               checked={form.popupEnabled}
@@ -174,8 +174,8 @@ export function SettingsForm({ settings }: { settings: ShopSettings }) {
         </button>
       </section>
 
-      <section className="rounded-card border border-burgundy/10 bg-white p-5 shadow-card">
-        <h2 className="font-serif text-xl text-navy">Social profiles</h2>
+      <section className="rounded-card border border-white/10 bg-white/[0.04] p-5 shadow-card">
+        <h2 className="font-serif text-xl text-white">Social profiles</h2>
         <p className="mt-1 text-[11px] text-stone">
           Icons appear in the footer only when a real profile URL is entered.
         </p>

@@ -49,7 +49,7 @@ export function ProductCard({
         </Link>
 
         {badge ? (
-          <span className="absolute left-0 top-2 bg-burgundy px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.12em] text-cream">
+          <span className="absolute left-0 top-2 bg-white px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.12em] text-black">
             {badge}
           </span>
         ) : null}
@@ -67,7 +67,7 @@ export function ProductCard({
           }
           aria-label={saved ? `Remove ${product.name} from saved pieces` : `Save ${product.name}`}
           aria-pressed={saved}
-          className="absolute right-1.5 top-1.5 grid h-11 w-11 place-items-center rounded-full text-burgundy transition-colors hover:text-burgundy-dark"
+          className="absolute right-1.5 top-1.5 grid h-11 w-11 place-items-center rounded-full text-burgundy transition-colors hover:text-white"
         >
           <IconHeart size={19} className={cn(saved && "fill-burgundy")} />
         </button>

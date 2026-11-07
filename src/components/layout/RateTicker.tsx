@@ -42,7 +42,7 @@ export function RateTicker() {
   return (
     <Link
       href="/gold-rate"
-      className="block border-y border-burgundy/10 bg-cream transition-colors hover:bg-blush/40"
+      className="block border-y border-white/10 bg-black transition-colors hover:bg-blush/40"
       aria-label="Today's live gold and silver rates in Hindaun"
     >
       <div className="no-scrollbar flex items-center gap-4 overflow-x-auto px-4 py-2 sm:justify-center sm:gap-6">

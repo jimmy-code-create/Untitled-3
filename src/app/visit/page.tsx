@@ -27,7 +27,7 @@ export default function VisitPage() {
         <header className="grid gap-8 border-b border-copper/15 pb-10 lg:grid-cols-[1.2fr_1fr] lg:items-end">
           <div>
             <p className="label mb-3">Since {SHOP.established} · Hindaun</p>
-            <h1 className="font-serif text-4xl leading-tight text-navy sm:text-5xl lg:text-6xl">
+            <h1 className="font-serif text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">
               A shop you can walk into,
               <br />
               <span className="italic text-copper-dark">and a family you can call.</span>
@@ -37,7 +37,7 @@ export default function VisitPage() {
               family for three generations. Come in for chai, even if you are only looking.
             </p>
           </div>
-          <div className="space-y-2.5 border border-copper/20 bg-white p-5">
+          <div className="space-y-2.5 border border-copper/20 bg-white/[0.04] p-5">
             <p className="flex items-start gap-2 text-[12px] text-charcoal/80">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-copper-dark" strokeWidth={1.4} /> {fullAddress}
             </p>
@@ -68,9 +68,9 @@ export default function VisitPage() {
 
       <div id="certification" className="container-x mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((s) => (
-          <div key={s.title} className="border border-copper/15 bg-white p-6">
+          <div key={s.title} className="border border-copper/15 bg-white/[0.04] p-6">
             <s.icon className="h-6 w-6 text-copper-dark" strokeWidth={1.2} />
-            <h3 className="mt-4 font-serif text-lg text-navy">{s.title}</h3>
+            <h3 className="mt-4 font-serif text-lg text-white">{s.title}</h3>
             <p className="mt-1.5 text-[11.5px] leading-relaxed text-stone">{s.text}</p>
           </div>
         ))}
@@ -85,19 +85,19 @@ export default function VisitPage() {
           <p className="label mb-3">Coming from out of town?</p>
           <div className="grid gap-6 sm:grid-cols-3">
             <div>
-              <h3 className="font-serif text-xl text-navy">By train</h3>
+              <h3 className="font-serif text-xl text-white">By train</h3>
               <p className="mt-1.5 text-[12px] leading-relaxed text-stone">
                 Hindaun City railway station is 1.8 km away. Auto to Jagdamba Market takes 8 minutes.
               </p>
             </div>
             <div>
-              <h3 className="font-serif text-xl text-navy">By bus</h3>
+              <h3 className="font-serif text-xl text-white">By bus</h3>
               <p className="mt-1.5 text-[12px] leading-relaxed text-stone">
                 Hindaun bus stand is a 5-minute walk. Ask for Mohan Nagar, Jagdamba Market — everyone knows us.
               </p>
             </div>
             <div>
-              <h3 className="font-serif text-xl text-navy">By car</h3>
+              <h3 className="font-serif text-xl text-white">By car</h3>
               <p className="mt-1.5 text-[12px] leading-relaxed text-stone">
                 Two-wheeler and car parking is available in front of the market. Call us and we will guide you in.
               </p>

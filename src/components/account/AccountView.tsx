@@ -63,8 +63,8 @@ export function AccountView({
   return (
     <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
       <aside>
-        <div className="border border-copper/20 bg-white p-5">
-          <p className="font-serif text-xl text-navy">{user.name || "JMD Customer"}</p>
+        <div className="border border-copper/20 bg-white/[0.04] p-5">
+          <p className="font-serif text-xl text-white">{user.name || "JMD Customer"}</p>
           <p className="mt-0.5 text-[11px] text-stone">{user.phone ? `+91 ${user.phone}` : user.email}</p>
           <div className="mt-4 space-y-1 border-t border-copper/15 pt-4">
             {[
@@ -103,11 +103,11 @@ export function AccountView({
       <div>
         {tab === "orders" && (
           <>
-            <h2 className="mb-5 font-serif text-2xl text-navy">Your orders</h2>
+            <h2 className="mb-5 font-serif text-2xl text-white">Your orders</h2>
             {orders.length === 0 ? (
-              <div className="border border-copper/15 bg-white px-6 py-16 text-center">
+              <div className="border border-copper/15 bg-white/[0.04] px-6 py-16 text-center">
                 <PackageCheck className="mx-auto h-9 w-9 text-copper/40" strokeWidth={1.1} />
-                <p className="mt-3 font-serif text-xl text-navy">No orders yet</p>
+                <p className="mt-3 font-serif text-xl text-white">No orders yet</p>
                 <p className="mt-1 text-[11.5px] text-stone">Your first JMD piece is waiting.</p>
                 <Link href="/collections/all" className="btn-copper mt-5">
                   Browse collections
@@ -116,11 +116,11 @@ export function AccountView({
             ) : (
               <div className="space-y-4">
                 {orders.map((order) => (
-                  <article key={order.id} className="border border-copper/20 bg-white">
+                  <article key={order.id} className="border border-copper/20 bg-white/[0.04]">
                     <div className="flex flex-wrap items-center justify-between gap-3 border-b border-copper/12 bg-lilacsoft/40 px-5 py-3">
                       <div>
                         <p className="text-[9px] uppercase tracking-widest2 text-stone">Order</p>
-                        <p className="text-[12px] text-navy">{order.orderNumber}</p>
+                        <p className="text-[12px] text-white">{order.orderNumber}</p>
                       </div>
                       <div className="text-[10px] text-stone">{formatDate(order.createdAt)}</div>
                       <div className="flex items-center gap-2">
@@ -139,7 +139,7 @@ export function AccountView({
                             <Image src={item.image} alt={item.name} fill sizes="48px" className="object-cover" />
                           </div>
                           <div className="flex-1">
-                            <Link href={`/products/${item.slug}`} className="font-serif text-[15px] text-navy hover:text-copper-dark">
+                            <Link href={`/products/${item.slug}`} className="font-serif text-[15px] text-white hover:text-copper-dark">
                               {item.name}
                             </Link>
                             <p className="text-[10px] text-stone">
@@ -157,7 +157,7 @@ export function AccountView({
                           </p>
                           {order.trackingNo && <p className="mt-1">Tracking: {order.trackingNo} · {order.courier}</p>}
                         </div>
-                        <p className="font-serif text-lg text-navy">{inr(order.total)}</p>
+                        <p className="font-serif text-lg text-white">{inr(order.total)}</p>
                       </div>
                       <Timeline status={order.status} pickup={order.fulfillment === "PICKUP"} />
                     </div>
@@ -170,23 +170,23 @@ export function AccountView({
 
         {tab === "wishlist" && (
           <>
-            <h2 className="mb-5 font-serif text-2xl text-navy">Wishlist</h2>
+            <h2 className="mb-5 font-serif text-2xl text-white">Wishlist</h2>
             <WishlistView />
           </>
         )}
 
         {tab === "addresses" && (
           <>
-            <h2 className="mb-5 font-serif text-2xl text-navy">Addresses</h2>
+            <h2 className="mb-5 font-serif text-2xl text-white">Addresses</h2>
             {addresses.length === 0 ? (
-              <div className="border border-copper/15 bg-white px-6 py-14 text-center">
+              <div className="border border-copper/15 bg-white/[0.04] px-6 py-14 text-center">
                 <MapPin className="mx-auto h-8 w-8 text-copper/40" strokeWidth={1.1} />
                 <p className="mt-3 text-[12px] text-stone">Addresses you use at checkout will appear here.</p>
               </div>
             ) : (
               <div className="grid gap-4 sm:grid-cols-2">
                 {addresses.map((a, i) => (
-                  <div key={i} className="border border-copper/20 bg-white p-5">
+                  <div key={i} className="border border-copper/20 bg-white/[0.04] p-5">
                     <p className="text-[9px] uppercase tracking-widest2 text-copper-dark">Saved from order</p>
                     <p className="mt-2 text-[12.5px] text-charcoal/80">{a.fullName}</p>
                     <p className="mt-1 text-[11.5px] leading-relaxed text-stone">

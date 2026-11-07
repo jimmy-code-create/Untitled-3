@@ -80,7 +80,7 @@ export function LoginForm({ next = "/account", adminReason = false }: { next?: s
   };
 
   return (
-    <div className="mx-auto grid max-w-4xl overflow-hidden border border-copper/20 bg-white lg:grid-cols-2">
+    <div className="mx-auto grid max-w-4xl overflow-hidden border border-copper/20 bg-white/[0.04] lg:grid-cols-2">
       <div className="hidden flex-col justify-between bg-navy p-10 lg:flex">
         <Logo variant="light" size="md" />
         <div>

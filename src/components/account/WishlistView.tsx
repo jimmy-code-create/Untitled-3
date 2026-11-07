@@ -16,9 +16,9 @@ export function WishlistView() {
 
   if (items.length === 0) {
     return (
-      <div className="border border-copper/15 bg-white px-6 py-20 text-center">
+      <div className="border border-copper/15 bg-white/[0.04] px-6 py-20 text-center">
         <Heart className="mx-auto h-10 w-10 text-copper/40" strokeWidth={1.1} />
-        <h2 className="mt-4 font-serif text-2xl text-navy">{isHi ? "आपकी पसंद खाली है" : "Nothing saved yet"}</h2>
+        <h2 className="mt-4 font-serif text-2xl text-white">{isHi ? "आपकी पसंद खाली है" : "Nothing saved yet"}</h2>
         <p className="mx-auto mt-2 max-w-sm text-[12.5px] text-stone">
           {isHi
             ? "जो पसंद आए, दिल के निशान पर टैप करें — बाद में यहीं मिलेगा।"
@@ -34,7 +34,7 @@ export function WishlistView() {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => (
-        <article key={item.slug} className="group border border-copper/15 bg-white">
+        <article key={item.slug} className="group border border-copper/15 bg-white/[0.04]">
           <Link href={`/products/${item.slug}`} className="relative block aspect-[4/5] overflow-hidden bg-ivorydim">
             <Image
               src={item.image}
@@ -46,10 +46,10 @@ export function WishlistView() {
           </Link>
           <div className="p-4">
             <p className="text-[9px] uppercase tracking-widest2 text-copper-dark/80">{item.metal}</p>
-            <h3 className="mt-1 font-serif text-lg text-navy">
+            <h3 className="mt-1 font-serif text-lg text-white">
               <Link href={`/products/${item.slug}`}>{item.name}</Link>
             </h3>
-            <p className="mt-1 text-[13px] text-navy">{inr(item.price)}</p>
+            <p className="mt-1 text-[13px] text-white">{inr(item.price)}</p>
             <div className="mt-3 flex gap-2">
               <button
                 onClick={() => {

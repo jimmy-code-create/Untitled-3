@@ -133,8 +133,8 @@ export function CheckoutFlow() {
 
   if (lines.length === 0 && !placing) {
     return (
-      <div className="border border-copper/15 bg-white px-6 py-20 text-center">
-        <p className="font-serif text-2xl text-navy">Your cart is empty</p>
+      <div className="border border-copper/15 bg-white/[0.04] px-6 py-20 text-center">
+        <p className="font-serif text-2xl text-white">Your cart is empty</p>
         <Link href="/collections/all" className="btn-copper mt-6">
           Browse collections
         </Link>
@@ -281,8 +281,8 @@ export function CheckoutFlow() {
         <AnimatePresence mode="wait">
           {step === 1 && (
             <motion.div key="step1" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
-              <div className="border border-copper/20 bg-white p-6 sm:p-7">
-                <h2 className="font-serif text-2xl text-navy">Where should it reach you?</h2>
+              <div className="border border-copper/20 bg-white/[0.04] p-6 sm:p-7">
+                <h2 className="font-serif text-2xl text-white">Where should it reach you?</h2>
                 <p className="mt-1 text-[11.5px] text-stone">We’ll send the certificate and bill along with the piece.</p>
                 <div className="mt-5 grid gap-3 sm:grid-cols-2">
                   <input placeholder="Full name" value={address.name} onChange={(e) => setAddress({ ...address, name: e.target.value })} className="field sm:col-span-2" />
@@ -310,8 +310,8 @@ export function CheckoutFlow() {
 
           {step === 2 && (
             <motion.div key="step2" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
-              <div className="border border-copper/20 bg-white p-6 sm:p-7">
-                <h2 className="font-serif text-2xl text-navy">How would you like it?</h2>
+              <div className="border border-copper/20 bg-white/[0.04] p-6 sm:p-7">
+                <h2 className="font-serif text-2xl text-white">How would you like it?</h2>
                 <div className="mt-5 grid gap-3">
                   <button
                     onClick={() => { setFulfillment("DELIVERY"); setPayment("ONLINE"); }}
@@ -319,7 +319,7 @@ export function CheckoutFlow() {
                   >
                     <Truck className="mt-0.5 h-5 w-5 shrink-0 text-copper-dark" strokeWidth={1.3} />
                     <span>
-                      <span className="flex items-center gap-2 text-[12px] text-navy">
+                      <span className="flex items-center gap-2 text-[12px] text-white">
                         Home delivery
                         {fulfillment === "DELIVERY" && <BadgeCheck className="h-3.5 w-3.5 text-copper" />}
                       </span>
@@ -335,7 +335,7 @@ export function CheckoutFlow() {
                   >
                     <Store className="mt-0.5 h-5 w-5 shrink-0 text-copper-dark" strokeWidth={1.3} />
                     <span>
-                      <span className="flex items-center gap-2 text-[12px] text-navy">
+                      <span className="flex items-center gap-2 text-[12px] text-white">
                         Pick up from store
                         {fulfillment === "PICKUP" && <BadgeCheck className="h-3.5 w-3.5 text-copper" />}
                       </span>
@@ -368,8 +368,8 @@ export function CheckoutFlow() {
 
           {step === 3 && (
             <motion.div key="step3" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
-              <div className="border border-copper/20 bg-white p-6 sm:p-7">
-                <h2 className="font-serif text-2xl text-navy">How would you like to pay?</h2>
+              <div className="border border-copper/20 bg-white/[0.04] p-6 sm:p-7">
+                <h2 className="font-serif text-2xl text-white">How would you like to pay?</h2>
                 <div className="mt-5 grid gap-3">
                   <button
                     onClick={() => setPayment("ONLINE")}
@@ -377,7 +377,7 @@ export function CheckoutFlow() {
                   >
                     <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-copper-dark" strokeWidth={1.3} />
                     <span>
-                      <span className="text-[12px] text-navy">Pay online — UPI, cards, netbanking</span>
+                      <span className="text-[12px] text-white">Pay online — UPI, cards, netbanking</span>
                       <span className="mt-1 block text-[11px] text-stone">Secured by Razorpay. You will receive a GST invoice by email.</span>
                     </span>
                   </button>
@@ -388,7 +388,7 @@ export function CheckoutFlow() {
                     >
                       <Store className="mt-0.5 h-5 w-5 shrink-0 text-copper-dark" strokeWidth={1.3} />
                       <span>
-                        <span className="text-[12px] text-navy">Cash at store pickup</span>
+                        <span className="text-[12px] text-white">Cash at store pickup</span>
                         <span className="mt-1 block text-[11px] text-stone">Reserve now, pay when you collect. We’ll call to confirm.</span>
                       </span>
                     </button>
@@ -427,7 +427,7 @@ export function CheckoutFlow() {
 
       {/* Summary */}
       <aside className="lg:sticky lg:top-6 lg:self-start">
-        <div className="border border-copper/20 bg-white p-6">
+        <div className="border border-copper/20 bg-white/[0.04] p-6">
           <p className="label mb-4">Your order</p>
           <ul className="max-h-[280px] space-y-3 overflow-y-auto pr-1">
             {lines.map((l) => (
@@ -436,7 +436,7 @@ export function CheckoutFlow() {
                   <Image src={l.image} alt={l.name} fill sizes="56px" className="object-cover" />
                 </div>
                 <div className="flex-1">
-                  <p className="font-serif text-[15px] leading-tight text-navy">{l.name}</p>
+                  <p className="font-serif text-[15px] leading-tight text-white">{l.name}</p>
                   <p className="text-[10px] text-stone">
                     {l.size ? `${l.size} · ` : ""}Qty {l.quantity}
                   </p>
@@ -460,11 +460,11 @@ export function CheckoutFlow() {
             </div>
             <div className="flex justify-between border-t border-copper/15 pt-3">
               <dt className="text-[10px] uppercase tracking-widest2 text-copper-dark">Total</dt>
-              <dd className="font-serif text-2xl text-navy">{inr(total)}</dd>
+              <dd className="font-serif text-2xl text-white">{inr(total)}</dd>
             </div>
           </dl>
           {quote?.lockToken ? (
-            <div className={`mt-4 rounded-control border px-4 py-3 text-[10.5px] ${lockSeconds > 0 ? "border-burgundy/15 bg-blush/60 text-burgundy" : "border-gold/40 bg-peach text-gold-dark"}`}>
+            <div className={`mt-4 rounded-control border px-4 py-3 text-[10.5px] ${lockSeconds > 0 ? "border-white/10 bg-blush/60 text-burgundy" : "border-gold/40 bg-peach text-gold-dark"}`}>
               {lockSeconds > 0 ? (
                 <>Price locked for {quote.lockMinutes ?? 15} minutes · <span className="font-semibold tabular-nums">{lockClock}</span> left</>
               ) : (
@@ -490,14 +490,14 @@ export function CheckoutFlow() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="w-full max-w-sm border border-copper/20 bg-ivory p-7 text-center">
+            <div className="w-full max-w-sm border border-copper/20 bg-black p-7 text-center">
               <ShieldCheck className="mx-auto h-9 w-9 text-copper-dark" strokeWidth={1.2} />
-              <h3 className="mt-3 font-serif text-2xl text-navy">Demo payment</h3>
+              <h3 className="mt-3 font-serif text-2xl text-white">Demo payment</h3>
               <p className="mt-2 text-[11.5px] leading-relaxed text-stone">
                 Razorpay keys are not configured, so no real payment will be taken. Your order{" "}
                 <span className="text-charcoal">{demoModal.orderNumber}</span> will be marked paid for this demo.
               </p>
-              <div className="mt-4 border border-copper/20 bg-white p-3 text-left text-[11px]">
+              <div className="mt-4 border border-copper/20 bg-white/[0.04] p-3 text-left text-[11px]">
                 <div className="flex justify-between"><span className="text-stone">Amount</span><span>{inr(total)}</span></div>
                 <div className="mt-1 flex justify-between"><span className="text-stone">Method</span><span>UPI (simulated)</span></div>
               </div>

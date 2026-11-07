@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FDF1E6",
+  themeColor: "#0B0B0B",
   width: "device-width",
   initialScale: 1,
 };
@@ -81,7 +81,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="en">
-      <body className="bg-cream">
+      <body className="bg-black">
         <Providers>
           <LiveRatesProvider
             initialRates={rateInfo.rates}

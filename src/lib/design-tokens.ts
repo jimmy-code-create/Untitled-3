@@ -1,5 +1,5 @@
 /**
- * JMD design tokens — warm cream, deep burgundy, soft gold.
+ * JMD design tokens — black glass, champagne light, Instrument Serif.
  * Single source of truth for colours, type, spacing, radii and motion.
  * Do not hard-code hex values in components.
  */
@@ -7,43 +7,47 @@
 export const colors = {
   // Core palette
   white: "#FFFFFF",
-  cream: "#FDF1E6",
-  blush: "#F3E7E8",
-  peach: "#FDEFE3",
-  burgundy: "#7A1F2B",
-  burgundyDark: "#2E0609",
-  burgundyDeep: "#1F0406",
-  burgundySoft: "#3A0C10",
-  gold: "#B07A2A",
-  goldLight: "#F3D29A",
-  goldDark: "#7A4E12",
-  heading: "#2A0A0E",
-  body: "#5C5457",
-  whatsapp: "#0F7A3D",
-  announcementFrom: "#4A0A0F",
-  announcementTo: "#8B0A0A",
-  roseMuted: "#D9A8B0",
+  /** Light ink for text on black (was the page colour in the old skin). */
+  cream: "#F6F2EA",
+  /** Raised glass surface. */
+  blush: "#141414",
+  /** Deepest panel tint. */
+  peach: "#0C0C0C",
+  /** Accent: champagne, used for text, rules and hairlines. */
+  burgundy: "#E4C68F",
+  burgundyDark: "#0B0B0B",
+  burgundyDeep: "#000000",
+  burgundySoft: "#1A1712",
+  gold: "#D9B87C",
+  goldLight: "#F4E3C4",
+  goldDark: "#C3A268",
+  heading: "#FFFFFF",
+  body: "#A8A29A",
+  whatsapp: "#1FA855",
+  announcementFrom: "#0B0B0B",
+  announcementTo: "#171717",
+  roseMuted: "#BFA98C",
 
   // Compatibility aliases used across existing pages.
-  navy: "#2E0609",
-  navyDeep: "#1F0406",
-  navySoft: "#3A0C10",
-  copper: "#B07A2A",
-  copperLight: "#F3D29A",
-  copperDark: "#7A4E12",
-  ivory: "#FDF1E6",
-  ivoryDim: "#F7E8D8",
-  lavender: "#F3E7E8",
+  navy: "#0B0B0B",
+  navyDeep: "#000000",
+  navySoft: "#1A1A1A",
+  copper: "#C9A46A",
+  copperLight: "#EAD3AC",
+  copperDark: "#D8BE93",
+  ivory: "#F6F2EA",
+  ivoryDim: "#E7E0D4",
+  lavender: "#141414",
   marigold: "#E7B96A",
-  charcoal: "#2A0A0E",
-  stone: "#5C5457",
+  charcoal: "#EDE8DF",
+  stone: "#A8A29A",
 } as const;
 
 export const gradients = {
-  announcement: "linear-gradient(90deg, #4A0A0F 0%, #8B0A0A 100%)",
-  goldIcon: "linear-gradient(145deg, #F3D29A 0%, #A9722A 100%)",
-  burgundy: "linear-gradient(160deg, #7A1F2B 0%, #2E0609 100%)",
-  footerHump: "#2E0609",
+  announcement: "linear-gradient(90deg, #0B0B0B 0%, #191919 100%)",
+  goldIcon: "linear-gradient(145deg, #F4E3C4 0%, #C9A46A 100%)",
+  burgundy: "linear-gradient(160deg, #171310 0%, #050505 100%)",
+  footerHump: "#050505",
 } as const;
 
 /** Fixed type scale — 12 / 14 / 16 / 20 / 28 / 34 / 44 / 72. */
@@ -82,17 +86,17 @@ export const radii = {
 } as const;
 
 export const borders = {
-  hairline: "1px solid rgba(122, 31, 43, 0.12)",
-  hairlineLight: "1px solid rgba(253, 241, 230, 0.18)",
+  hairline: "1px solid rgba(255, 255, 255, 0.10)",
+  hairlineLight: "1px solid rgba(255, 255, 255, 0.18)",
 } as const;
 
 /** Soft shadows only on cards and popups. */
 export const shadows = {
-  card: "0 10px 30px -20px rgba(46, 6, 9, 0.28)",
-  popup: "0 24px 64px -32px rgba(46, 6, 9, 0.45)",
-  sticky: "0 -1px 0 rgba(122, 31, 43, 0.10), 0 8px 24px -18px rgba(46, 6, 9, 0.3)",
-  modal: "0 24px 64px -32px rgba(46, 6, 9, 0.45)",
-  soft: "0 1px 0 rgba(122, 31, 43, 0.08)",
+  card: "0 24px 60px -40px rgba(0, 0, 0, 0.9)",
+  popup: "0 24px 64px -32px rgba(0, 0, 0, 0.85)",
+  sticky: "0 1px 0 rgba(255, 255, 255, 0.06), 0 8px 24px -18px rgba(0, 0, 0, 0.8)",
+  modal: "0 24px 64px -32px rgba(0, 0, 0, 0.85)",
+  soft: "0 1px 0 rgba(255, 255, 255, 0.06)",
 } as const;
 
 export const motion = {

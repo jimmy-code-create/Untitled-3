@@ -62,7 +62,7 @@ export function MenuDrawer({
         onClick={onClose}
         className="absolute inset-0 bg-burgundy-dark/35"
       />
-      <div className="absolute inset-y-0 left-0 flex w-full max-w-[420px] animate-drawer-in flex-col overflow-y-auto bg-white px-4 pb-8 pt-3 shadow-popup">
+      <div className="absolute inset-y-0 left-0 flex w-full max-w-[420px] animate-drawer-in flex-col overflow-y-auto bg-white/[0.04] px-4 pb-8 pt-3 shadow-popup">
         <div className="flex items-center justify-between">
           <Link
             href={session ? "/account" : "/login"}
@@ -84,14 +84,14 @@ export function MenuDrawer({
         </div>
 
         {/* Coupon card */}
-        <div className="relative mt-5 overflow-hidden rounded-[18px] border border-burgundy/15 bg-blush px-4 py-4">
-          <span aria-hidden className="absolute -left-2.5 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full bg-white" />
-          <span aria-hidden className="absolute -right-2.5 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full bg-white" />
+        <div className="relative mt-5 overflow-hidden rounded-[18px] border border-white/10 bg-blush px-4 py-4">
+          <span aria-hidden className="absolute -left-2.5 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full bg-white/[0.04]" />
+          <span aria-hidden className="absolute -right-2.5 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full bg-white/[0.04]" />
           <div className="flex items-center gap-3">
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white/70 text-burgundy">
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-black/60 text-burgundy">
               <IconBag size={26} />
             </span>
-            <span aria-hidden className="h-14 border-l border-dashed border-burgundy/30" />
+            <span aria-hidden className="h-14 border-l border-dashed border-white/20" />
             <div className="min-w-0">
               <p className="truncate font-serif text-[19px] font-semibold leading-tight text-burgundy">
                 {settings.offerHeadline}
@@ -115,11 +115,11 @@ export function MenuDrawer({
                 key={row.label}
                 href={row.href}
                 onClick={onClose}
-                className="my-2 flex min-h-12 items-center gap-3 rounded-control bg-burgundy px-4 text-cream"
+                className="my-2 flex min-h-12 items-center gap-3 rounded-control bg-white px-4 text-black"
               >
                 <IconSparkle size={17} className="text-gold-light" />
                 <span className="flex-1 text-[13px] font-medium">{row.label}</span>
-                <span className="rounded-control bg-gold-light px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.1em] text-burgundy-dark">
+                <span className="rounded-control bg-gold-light px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.1em] text-white">
                   New
                 </span>
                 <IconChevron size={15} className="text-cream/70" />
@@ -129,7 +129,7 @@ export function MenuDrawer({
                 key={row.label}
                 href={row.href}
                 onClick={onClose}
-                className="flex min-h-12 items-center gap-3 border-b border-burgundy/10 px-1 text-ink last:border-0"
+                className="flex min-h-12 items-center gap-3 border-b border-white/10 px-1 text-ink last:border-0"
               >
                 <span className="h-1.5 w-1.5 rotate-45 rounded-[1px] bg-gold/70" aria-hidden />
                 <span className="flex-1 text-[13px]">{row.label}</span>
@@ -140,8 +140,8 @@ export function MenuDrawer({
         </nav>
 
         <div className="mt-auto pt-6">
-          <div className="inline-flex rounded-control border border-burgundy/15 p-0.5">
-            <span className="rounded-control bg-burgundy px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-cream">
+          <div className="inline-flex rounded-control border border-white/10 p-0.5">
+            <span className="rounded-control bg-white px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-black">
               INR
             </span>
           </div>

@@ -33,7 +33,7 @@ export function ImageSlot({
   const height = Math.round((width * h) / w);
 
   return (
-    <div className={cn("relative overflow-hidden rounded-photo border border-burgundy/10 bg-blush", className)}>
+    <div className={cn("relative overflow-hidden rounded-photo border border-white/10 bg-blush", className)}>
       {src ? (
         <Image
           src={src}
@@ -47,7 +47,7 @@ export function ImageSlot({
         />
       ) : (
         <div
-          className="flex h-full w-full flex-col items-center justify-center gap-2 bg-ivory px-6 text-center"
+          className="flex h-full w-full flex-col items-center justify-center gap-2 bg-black px-6 text-center"
           role="img"
           aria-label={`${alt} — photo not uploaded yet`}
         >

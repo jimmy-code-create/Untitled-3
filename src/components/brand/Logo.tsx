@@ -37,8 +37,8 @@ export function Logo({ variant = "dark", compact = false, className, size = "md"
         className={cn(
           "logo-plaque relative inline-flex items-center justify-center overflow-hidden rounded-[9px] border font-sans font-semibold uppercase text-gold-light",
           variant === "light"
-            ? "border-gold/50 bg-burgundy-deep"
-            : "border-gold/45 bg-burgundy-dark shadow-[0_4px_14px_-8px_rgba(46,6,9,0.6)]",
+            ? "border-white/25 bg-white/[0.06] text-white"
+            : "border-white/20 bg-white/[0.04] text-white",
           pillSizes[size],
         )}
         aria-label="JMD"
@@ -56,7 +56,7 @@ export function Logo({ variant = "dark", compact = false, className, size = "md"
         <span
           className={cn(
             "logo-script mt-1 font-serif font-semibold italic",
-            variant === "light" ? "text-gold-light/90" : "text-burgundy",
+            variant === "light" ? "text-[#E4C68F]/90" : "text-[#E4C68F]/80",
             scriptSizes[size],
           )}
         >

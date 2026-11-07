@@ -33,11 +33,11 @@ export function EnquiriesTable({ enquiries }: { enquiries: DemoEnquiry[] }) {
   return (
     <div className="space-y-3">
       {rows.map((e) => (
-        <article key={e.id} className="border border-copper/20 bg-white p-4">
+        <article key={e.id} className="border border-copper/20 bg-white/[0.04] p-4">
           <div className="flex flex-wrap items-start justify-between gap-2">
             <div>
               <div className="flex items-center gap-2">
-                <p className="text-[12px] text-navy">{e.name}</p>
+                <p className="text-[12px] text-white">{e.name}</p>
                 <span className={cn("px-2 py-0.5 text-[8px] uppercase tracking-widest2", STATUS_STYLES[e.status])}>{e.status}</span>
                 <span className="text-[8px] uppercase tracking-widest2 text-stone">{e.type.replace("_", " ")}</span>
               </div>
@@ -66,7 +66,7 @@ export function EnquiriesTable({ enquiries }: { enquiries: DemoEnquiry[] }) {
           </div>
         </article>
       ))}
-      {rows.length === 0 && <p className="border border-copper/20 bg-white px-4 py-10 text-center text-[11.5px] text-stone">No enquiries yet.</p>}
+      {rows.length === 0 && <p className="border border-copper/20 bg-white/[0.04] px-4 py-10 text-center text-[11.5px] text-stone">No enquiries yet.</p>}
     </div>
   );
 }

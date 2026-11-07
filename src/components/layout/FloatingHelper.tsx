@@ -42,7 +42,7 @@ export function FloatingHelper() {
   return (
     <div className="fixed bottom-4 right-4 z-[60] flex items-center gap-2 sm:bottom-6 sm:right-6">
       {showBubble ? (
-        <div className="flex max-w-[230px] items-center gap-2 rounded-control border border-burgundy/10 bg-white py-2 pl-4 pr-1.5 shadow-card">
+        <div className="flex max-w-[230px] items-center gap-2 rounded-control border border-white/10 bg-white/[0.04] py-2 pl-4 pr-1.5 shadow-card">
           <p className="text-[12px] leading-tight text-ink">Namaste! How can I help you?</p>
           <button
             type="button"

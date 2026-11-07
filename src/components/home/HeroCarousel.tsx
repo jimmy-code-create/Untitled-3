@@ -69,7 +69,7 @@ export function HeroCarousel() {
   }, []);
 
   return (
-    <section className="bg-cream px-4 pb-2 pt-3 sm:px-6">
+    <section className="bg-black px-4 pb-2 pt-3 sm:px-6">
       <div className="mx-auto max-w-content">
         <div
           ref={scroller}
@@ -101,7 +101,7 @@ export function HeroCarousel() {
                 sizes="(max-width: 1024px) 100vw, 1200px"
                 className="object-cover"
               />
-              <div className="absolute inset-x-3 bottom-3 rounded-[18px] bg-cream/95 px-4 py-4 backdrop-blur-sm sm:inset-x-5 sm:bottom-5 sm:max-w-[420px] sm:px-6 sm:py-5">
+              <div className="absolute inset-x-3 bottom-3 rounded-[18px] bg-black/85 px-4 py-4 backdrop-blur-sm sm:inset-x-5 sm:bottom-5 sm:max-w-[420px] sm:px-6 sm:py-5">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-dark">
                   {slide.kicker}
                 </p>
@@ -110,7 +110,7 @@ export function HeroCarousel() {
                 </h1>
                 <Link
                   href={slide.href}
-                  className="mt-3 inline-flex min-h-10 items-center rounded-control bg-burgundy px-5 text-[10px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-burgundy-dark"
+                  className="mt-3 inline-flex min-h-10 items-center rounded-control bg-white px-5 text-[10px] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-burgundy-dark"
                 >
                   Explore now
                 </Link>

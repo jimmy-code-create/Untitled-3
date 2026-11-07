@@ -15,7 +15,7 @@ export default function CartPage() {
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Cart" }]} />
         <header className="mb-10">
           <p className="label mb-2">Almost there</p>
-          <h1 className="font-serif text-4xl text-navy sm:text-5xl">Your Cart</h1>
+          <h1 className="font-serif text-4xl text-white sm:text-5xl">Your Cart</h1>
         </header>
         <CartView />
       </div>

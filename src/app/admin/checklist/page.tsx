@@ -49,23 +49,23 @@ export default function AdminChecklistPage() {
     <div className="space-y-6">
       <div>
         <p className="text-[9px] uppercase tracking-widest2 text-copper-dark">For the shop owner</p>
-        <h1 className="mt-1 font-serif text-3xl text-navy">Photo guide and open questions</h1>
+        <h1 className="mt-1 font-serif text-3xl text-white">Photo guide and open questions</h1>
         <p className="mt-1 max-w-2xl text-[11.5px] leading-relaxed text-stone">
           The website can only look like a real shop if the photos are the shop&apos;s own. Use this page before
           uploading a new piece, and answer the questions below so nothing on the site is a guess.
         </p>
       </div>
 
-      <section className="border border-copper/20 bg-white p-5">
+      <section className="border border-copper/20 bg-white/[0.04] p-5">
         <div className="mb-4 flex items-center gap-2">
           <Camera className="h-4 w-4 text-copper-dark" strokeWidth={1.4} />
-          <h2 className="font-serif text-xl text-navy">How to photograph a piece</h2>
+          <h2 className="font-serif text-xl text-white">How to photograph a piece</h2>
         </div>
         <ol className="grid gap-4 sm:grid-cols-2">
           {photoSteps.map((s, i) => (
             <li key={s.title} className="border-l border-copper/30 pl-4">
               <p className="text-[9px] uppercase tracking-widest2 text-copper-dark">Step {i + 1}</p>
-              <p className="mt-1 text-sm text-navy">{s.title}</p>
+              <p className="mt-1 text-sm text-white">{s.title}</p>
               <p className="mt-1 text-[11.5px] leading-relaxed text-stone">{s.body}</p>
             </li>
           ))}
@@ -76,10 +76,10 @@ export default function AdminChecklistPage() {
         </p>
       </section>
 
-      <section className="border border-copper/20 bg-white p-5">
+      <section className="border border-copper/20 bg-white/[0.04] p-5">
         <div className="mb-3 flex items-center gap-2">
           <ClipboardList className="h-4 w-4 text-copper-dark" strokeWidth={1.4} />
-          <h2 className="font-serif text-xl text-navy">[CONFIRM WITH SHOP] — open questions</h2>
+          <h2 className="font-serif text-xl text-white">[CONFIRM WITH SHOP] — open questions</h2>
         </div>
         <p className="mb-4 text-[11.5px] leading-relaxed text-stone">
           Every item below is written into the website as a visible placeholder in the code comments. Until you
@@ -95,10 +95,10 @@ export default function AdminChecklistPage() {
         </ul>
       </section>
 
-      <section className="border border-copper/20 bg-white p-5">
+      <section className="border border-copper/20 bg-white/[0.04] p-5">
         <div className="mb-2 flex items-center gap-2">
           <MessageCircleQuestion className="h-4 w-4 text-copper-dark" strokeWidth={1.4} />
-          <h2 className="font-serif text-xl text-navy">Before the first real order</h2>
+          <h2 className="font-serif text-xl text-white">Before the first real order</h2>
         </div>
         <p className="text-[11.5px] leading-relaxed text-stone">
           Orders and enquiries currently live in the server&apos;s memory on the hosted site, so they can

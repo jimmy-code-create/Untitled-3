@@ -39,8 +39,8 @@ export function CartView() {
 
   if (lines.length === 0) {
     return (
-      <div className="border border-copper/15 bg-white px-6 py-20 text-center">
-        <p className="font-serif text-3xl text-navy">{t("cart.empty")}</p>
+      <div className="border border-copper/15 bg-white/[0.04] px-6 py-20 text-center">
+        <p className="font-serif text-3xl text-white">{t("cart.empty")}</p>
         <p className="mx-auto mt-3 max-w-sm text-[12.5px] text-stone">
           {isHi ? "नीचे दिए कलेक्शन से शुरुआत करें — या सीधे व्हाट्सएप पर पूछें।" : "Start with a collection below — or simply ask us on WhatsApp."}
         </p>
@@ -89,7 +89,7 @@ export function CartView() {
                     <p className="text-[9px] uppercase tracking-widest2 text-copper-dark/80">
                       {line.purity} {line.metal === "SILVER" ? "Silver" : line.metal.toLowerCase()}
                     </p>
-                    <h3 className="mt-1 font-serif text-lg leading-tight text-navy">
+                    <h3 className="mt-1 font-serif text-lg leading-tight text-white">
                       <Link href={`/products/${line.slug}`}>{line.name}</Link>
                     </h3>
                     {line.size && <p className="mt-0.5 text-[11px] text-stone">Size: {line.size}</p>}
@@ -124,7 +124,7 @@ export function CartView() {
                       <Plus className="h-3 w-3" />
                     </button>
                   </div>
-                  <p className="font-serif text-lg text-navy">{inr(line.price * line.quantity)}</p>
+                  <p className="font-serif text-lg text-white">{inr(line.price * line.quantity)}</p>
                 </div>
               </div>
             </li>
@@ -137,7 +137,7 @@ export function CartView() {
       </div>
 
       <aside className="lg:sticky lg:top-6 lg:self-start">
-        <div className="border border-copper/20 bg-white p-6">
+        <div className="border border-copper/20 bg-white/[0.04] p-6">
           <p className="label mb-4">Order summary</p>
           <dl className="space-y-2.5 text-[12.5px]">
             <div className="flex justify-between text-stone">
@@ -154,7 +154,7 @@ export function CartView() {
             </div>
             <div className="flex justify-between border-t border-copper/15 pt-3">
               <dt className="text-[10px] uppercase tracking-widest2 text-copper-dark">Total payable</dt>
-              <dd className="font-serif text-2xl text-navy">{inr(total)}</dd>
+              <dd className="font-serif text-2xl text-white">{inr(total)}</dd>
             </div>
           </dl>
 

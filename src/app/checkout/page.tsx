@@ -15,7 +15,7 @@ export default function CheckoutPage() {
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Cart", href: "/cart" }, { label: "Checkout" }]} />
         <header className="mb-8">
           <p className="label mb-2">Secure checkout</p>
-          <h1 className="font-serif text-4xl text-navy sm:text-5xl">Checkout</h1>
+          <h1 className="font-serif text-4xl text-white sm:text-5xl">Checkout</h1>
         </header>
         <CheckoutFlow />
       </div>

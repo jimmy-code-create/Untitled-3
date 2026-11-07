@@ -26,14 +26,14 @@ export default async function SuccessPage({
       <Confetti />
       <div className="container-x">
         <div className="mx-auto max-w-2xl">
-          <div className="border border-copper/20 bg-white p-8 text-center sm:p-12">
+          <div className="border border-copper/20 bg-white/[0.04] p-8 text-center sm:p-12">
             <div className="mx-auto grid h-16 w-16 place-items-center rounded-full border border-copper/30 bg-copper/10">
               <Check className="h-8 w-8 text-copper-dark" strokeWidth={1.4} />
             </div>
             <p className="mt-6 font-hindi text-[11px] tracking-[0.2em] text-copper-dark">
               || शुभ हो ||
             </p>
-            <h1 className="mt-2 font-serif text-3xl text-navy sm:text-4xl">
+            <h1 className="mt-2 font-serif text-3xl text-white sm:text-4xl">
               {order ? "Your order is confirmed" : "Thank you"}
             </h1>
             <p className="mx-auto mt-3 max-w-md text-[12.5px] leading-relaxed text-stone">
@@ -48,11 +48,11 @@ export default async function SuccessPage({
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div>
                       <p className="label">Order number</p>
-                      <p className="mt-1 font-serif text-xl text-navy">{order.orderNumber}</p>
+                      <p className="mt-1 font-serif text-xl text-white">{order.orderNumber}</p>
                     </div>
                     <div className="text-right">
                       <p className="label">Total</p>
-                      <p className="mt-1 font-serif text-xl text-navy">{inr(order.total)}</p>
+                      <p className="mt-1 font-serif text-xl text-white">{inr(order.total)}</p>
                     </div>
                   </div>
                   <div className="mt-4 flex flex-wrap gap-4 border-t border-copper/15 pt-3 text-[11px] text-stone">

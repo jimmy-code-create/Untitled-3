@@ -245,7 +245,7 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
             {/* badge + certificate chips */}
             <div className="pointer-events-none absolute left-3 top-3 flex flex-col gap-1.5">
               {product.certifications.slice(0, 2).map((c) => (
-                <span key={c} className="w-fit bg-cream/90 px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.14em] text-burgundy backdrop-blur">
+                <span key={c} className="w-fit bg-black/80 px-2 py-1 text-[8.5px] font-semibold uppercase tracking-[0.14em] text-burgundy backdrop-blur">
                   {c}
                 </span>
               ))}
@@ -258,7 +258,7 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
                 onClick={() => setTransparent((v) => !v)}
                 aria-pressed={transparent}
                 aria-label={transparent ? "Show the ivory stage" : "Show the piece on a transparent background"}
-                className="grid h-11 w-11 place-items-center rounded-full bg-cream/85 text-burgundy backdrop-blur transition-colors hover:bg-cream"
+                className="grid h-11 w-11 place-items-center rounded-full bg-black/75 text-burgundy backdrop-blur transition-colors hover:bg-black"
                 title="Transparent view"
               >
                 <span className={cn("h-4 w-4 rounded-[3px] border border-burgundy/60", transparent ? "bg-[repeating-conic-gradient(#d9c9bc_0%_25%,transparent_0%_50%)] bg-[length:8px_8px]" : "bg-transparent")} />
@@ -267,7 +267,7 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
                 type="button"
                 onClick={() => setLightbox(true)}
                 aria-label="Open full-size photograph"
-                className="grid h-11 w-11 place-items-center rounded-full bg-cream/85 text-burgundy backdrop-blur transition-colors hover:bg-cream"
+                className="grid h-11 w-11 place-items-center rounded-full bg-black/75 text-burgundy backdrop-blur transition-colors hover:bg-black"
               >
                 <Plus className="h-4 w-4" strokeWidth={1.6} />
               </button>
@@ -311,7 +311,7 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
                   aria-pressed={active === i}
                   className={cn(
                     "relative h-20 w-16 shrink-0 overflow-hidden rounded-[2px] border transition-colors",
-                    active === i ? "border-burgundy" : "border-burgundy/15 hover:border-burgundy/40",
+                    active === i ? "border-burgundy" : "border-white/10 hover:border-white/25",
                   )}
                 >
                   <Image src={img} alt="" width={120} height={150} sizes="64px" className="product-shot h-full w-full object-cover" />
@@ -321,7 +321,7 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
           ) : null}
 
           {/* trust strip */}
-          <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1.5 border-y border-burgundy/10 py-3 text-[10px] text-bodygrey sm:grid-cols-4">
+          <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1.5 border-y border-white/10 py-3 text-[10px] text-bodygrey sm:grid-cols-4">
             <span className="flex items-center gap-1.5">
               <BadgeCheck className="h-3.5 w-3.5 text-gold-dark" strokeWidth={1.5} /> BIS hallmarked
             </span>
@@ -406,8 +406,8 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
                     className={cn(
                       "min-h-11 min-w-[56px] rounded-control border px-3 text-[11.5px] transition-colors",
                       size === s
-                        ? "border-burgundy bg-burgundy text-cream"
-                        : "border-burgundy/25 text-charcoal/80 hover:border-burgundy",
+                        ? "border-burgundy bg-white text-black"
+                        : "border-white/15 text-charcoal/80 hover:border-burgundy",
                     )}
                   >
                     {s}
@@ -418,7 +418,7 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
           ) : null}
 
           <div className="mt-5 flex items-center gap-3">
-            <div className="inline-flex items-center rounded-control border border-burgundy/25">
+            <div className="inline-flex items-center rounded-control border border-white/15">
               <button
                 type="button"
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
@@ -454,7 +454,7 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
               aria-label={saved ? "Remove from saved pieces" : "Save this piece"}
               className={cn(
                 "grid h-11 w-11 place-items-center rounded-control border transition-colors",
-                saved ? "border-burgundy text-burgundy" : "border-burgundy/25 text-charcoal/70 hover:border-burgundy",
+                saved ? "border-burgundy text-burgundy" : "border-white/15 text-charcoal/70 hover:border-burgundy",
               )}
             >
               <Heart className={cn("h-4 w-4", saved && "fill-burgundy")} strokeWidth={1.5} />
@@ -488,7 +488,7 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
           </button>
 
           {/* delivery */}
-          <div className="mt-5 border border-burgundy/12 bg-white p-4">
+          <div className="mt-5 border border-burgundy/12 bg-white/[0.04] p-4">
             <p className="label mb-2.5">{t("product.pincode")}</p>
             <div className="flex gap-2">
               <input
@@ -516,9 +516,9 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
           {/* full specification */}
           <div className="mt-6">
             <p className="label mb-2.5">{isHi ? "पूरी जानकारी" : "The details"}</p>
-            <dl className="grid gap-x-5 gap-y-0 border-t border-burgundy/10">
+            <dl className="grid gap-x-5 gap-y-0 border-t border-white/10">
               {specs.map(([label, value]) => (
-                <div key={label} className="flex items-start justify-between gap-4 border-b border-burgundy/10 py-2">
+                <div key={label} className="flex items-start justify-between gap-4 border-b border-white/10 py-2">
                   <dt className="text-[11.5px] text-bodygrey">{label}</dt>
                   <dd className="max-w-[62%] text-right text-[11.5px] capitalize text-charcoal">{value}</dd>
                 </div>
@@ -527,7 +527,7 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
           </div>
 
           {/* price breakup */}
-          <details className="mt-4 border border-burgundy/12 bg-white p-4">
+          <details className="mt-4 border border-burgundy/12 bg-white/[0.04] p-4">
             <summary className="label cursor-pointer list-none">{t("product.priceBreakup")}</summary>
             <dl className="mt-3 space-y-2 text-[12px]">
               <div className="flex justify-between text-bodygrey">
@@ -655,12 +655,12 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 20, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-md bg-ivory p-6 sm:p-8"
+              className="w-full max-w-md bg-black p-6 sm:p-8"
             >
               <div className="flex items-start justify-between">
                 <div>
                   <p className="label mb-2">Store visit</p>
-                  <h3 className="font-serif text-2xl text-navy">See it in person</h3>
+                  <h3 className="font-serif text-2xl text-white">See it in person</h3>
                 </div>
                 <button onClick={() => setBookOpen(false)} aria-label="Close" className="text-stone hover:text-charcoal">
                   <X className="h-5 w-5" />
@@ -673,7 +673,7 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
               {bookState === "done" ? (
                 <div className="mt-6 border border-whatsapp/30 bg-whatsapp/5 p-5 text-center">
                   <BadgeCheck className="mx-auto h-8 w-8 text-whatsapp" strokeWidth={1.3} />
-                  <p className="mt-2 font-serif text-xl text-navy">Request received</p>
+                  <p className="mt-2 font-serif text-xl text-white">Request received</p>
                   <p className="mt-1 text-[11.5px] text-stone">We will call you shortly to confirm your visit.</p>
                 </div>
               ) : (
@@ -722,7 +722,7 @@ export function ProductDetail({ product, related }: { product: ProductView; rela
           <div className="mb-8 flex items-end justify-between">
             <div>
               <p className="label mb-2">{isHi ? "और भी देखें" : "Complete the look"}</p>
-              <h2 className="h2 text-navy">{t("product.similar")}</h2>
+              <h2 className="h2 text-white">{t("product.similar")}</h2>
             </div>
             <Link
               href={`/collections/${product.collections[0] ?? "all"}`}

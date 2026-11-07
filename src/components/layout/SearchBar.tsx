@@ -55,7 +55,7 @@ export function SearchBar() {
       <form
         onSubmit={submit}
         role="search"
-        className="flex h-12 w-full items-center gap-1 rounded-control border border-burgundy/20 bg-white pl-4 pr-1 shadow-[0_2px_10px_-8px_rgba(46,6,9,0.25)] focus-within:border-burgundy/45"
+        className="flex h-12 w-full items-center gap-1 rounded-control border border-white/15 bg-white/[0.04] pl-4 pr-1 shadow-[0_2px_10px_-8px_rgba(46,6,9,0.25)] focus-within:border-burgundy/45"
       >
         <IconSearch className="h-[18px] w-[18px] shrink-0 text-burgundy/70" size={18} />
         <label htmlFor="jmd-search" className="sr-only">

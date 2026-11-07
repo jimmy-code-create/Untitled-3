@@ -22,7 +22,7 @@ const NAV = [
 ];
 
 const iconButton =
-  "relative grid h-11 w-11 place-items-center rounded-full text-burgundy transition-colors hover:bg-blush/70";
+  "relative grid h-11 w-11 place-items-center rounded-full text-white/75 transition-colors hover:bg-white/10 hover:text-white";
 
 export function Navbar({
   rates,
@@ -50,10 +50,10 @@ export function Navbar({
 
   return (
     <>
-      <div className="relative z-50 bg-white">
+      <div className="sticky top-0 z-50 bg-black/70 backdrop-blur-2xl">
         <AnnouncementBar text={settings.announcementText} />
 
-        <header className="border-b border-burgundy/10 bg-white">
+        <header className="border-b border-white/10">
           <div className="container-x">
             <div className="relative flex h-16 items-center justify-between">
               {/* Left: hamburger + logo */}
@@ -103,7 +103,7 @@ export function Navbar({
                 <Link href="/cart" aria-label="Bag" className={iconButton}>
                   <IconBag size={22} />
                   {mounted && lines.length > 0 ? (
-                    <span className="absolute right-0.5 top-0.5 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-burgundy px-1 text-[10px] font-semibold leading-none text-white">
+                    <span className="absolute right-0.5 top-0.5 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-white px-1 text-[10px] font-semibold leading-none text-black">
                       {cartCount(lines)}
                     </span>
                   ) : null}
@@ -113,20 +113,20 @@ export function Navbar({
           </div>
 
           {/* Desktop nav row */}
-          <nav aria-label="Collections" className="hidden border-t border-burgundy/10 lg:block">
+          <nav aria-label="Collections" className="hidden border-t border-white/10 lg:block">
             <div className="container-x flex h-11 items-center justify-center gap-8">
               {NAV.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-[11px] font-medium uppercase tracking-[0.12em] text-ink/80 transition-colors hover:text-burgundy"
+                  className="text-[11px] font-medium uppercase tracking-[0.12em] text-white/65 transition-colors hover:text-white"
                 >
                   {item.label}
                 </Link>
               ))}
               <Link
                 href="/gold-rate"
-                className="text-[11px] font-medium uppercase tracking-[0.12em] text-gold-dark transition-colors hover:text-burgundy"
+                className="text-[11px] font-medium uppercase tracking-[0.12em] text-gold-dark transition-colors hover:text-white"
               >
                 Today&apos;s Rate
               </Link>

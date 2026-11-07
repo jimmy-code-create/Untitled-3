@@ -45,11 +45,9 @@ export function Footer({ settings }: { settings: ShopSettings }) {
   ].filter((s) => s.href);
 
   return (
-    <footer className="bg-cream px-6 pb-6 pt-10">
+    <footer className="bg-black px-4 pb-8 pt-14 sm:px-6">
       <div className="mx-auto max-w-content">
-        <div className="footer-humps" aria-hidden />
-
-        <div className="rounded-b-[24px] bg-burgundy-dark px-5 pb-6 pt-8 text-cream sm:px-8 sm:pt-10">
+        <div className="rounded-card border border-white/10 bg-white/[0.03] px-5 pb-6 pt-8 text-cream sm:px-8 sm:pt-10">
           <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-[1.15fr_1fr_1fr_1.1fr]">
             <div>
               <Logo variant="light" size="md" />
@@ -120,7 +118,7 @@ export function Footer({ settings }: { settings: ShopSettings }) {
               </p>
               <Link
                 href="/visit"
-                className="mt-3 inline-flex min-h-10 items-center rounded-control border border-gold-light/60 px-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-gold-light transition-colors hover:bg-gold-light hover:text-burgundy-dark"
+                className="mt-3 inline-flex min-h-10 items-center rounded-control border border-gold-light/60 px-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-gold-light transition-colors hover:bg-gold-light hover:text-white"
               >
                 Get directions
               </Link>
@@ -142,14 +140,14 @@ export function Footer({ settings }: { settings: ShopSettings }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="WhatsApp"
-                  className="grid h-11 w-11 place-items-center rounded-full bg-cream/10 text-cream/85 hover:bg-gold-light hover:text-burgundy-dark"
+                  className="grid h-11 w-11 place-items-center rounded-full bg-cream/10 text-cream/85 hover:bg-gold-light hover:text-white"
                 >
                   <IconWhatsApp size={17} />
                 </a>
                 <a
                   href={`mailto:${SHOP.email}`}
                   aria-label="Email"
-                  className="grid h-11 w-11 place-items-center rounded-full bg-cream/10 text-cream/85 hover:bg-gold-light hover:text-burgundy-dark"
+                  className="grid h-11 w-11 place-items-center rounded-full bg-cream/10 text-cream/85 hover:bg-gold-light hover:text-white"
                 >
                   <IconMail size={17} />
                 </a>
@@ -158,7 +156,7 @@ export function Footer({ settings }: { settings: ShopSettings }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Chat"
-                  className="grid h-11 w-11 place-items-center rounded-full bg-cream/10 text-cream/85 hover:bg-gold-light hover:text-burgundy-dark"
+                  className="grid h-11 w-11 place-items-center rounded-full bg-cream/10 text-cream/85 hover:bg-gold-light hover:text-white"
                 >
                   <IconChat size={17} />
                 </a>
@@ -169,7 +167,7 @@ export function Footer({ settings }: { settings: ShopSettings }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="grid h-11 w-11 place-items-center rounded-full bg-cream/10 text-cream/85 hover:bg-gold-light hover:text-burgundy-dark"
+                    className="grid h-11 w-11 place-items-center rounded-full bg-cream/10 text-cream/85 hover:bg-gold-light hover:text-white"
                   >
                     <Icon size={17} />
                   </a>

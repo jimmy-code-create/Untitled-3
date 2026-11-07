@@ -10,7 +10,7 @@ export function PageShell({
   tight?: boolean;
 }) {
   return (
-    <div className={cn("bg-cream pb-20", className)}>{children}</div>
+    <div className={cn("bg-black pb-20", className)}>{children}</div>
   );
 }
 

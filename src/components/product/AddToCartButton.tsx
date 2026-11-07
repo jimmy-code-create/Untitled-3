@@ -62,7 +62,7 @@ export function AddToCartButton({
       type="button"
       onClick={onClick}
       className={cn(
-        "inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-control border border-burgundy/25 bg-white px-3 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-burgundy transition-colors hover:border-burgundy hover:bg-burgundy hover:text-cream",
+        "inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-control border border-white/15 bg-white/[0.04] px-3 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:border-white/40 hover:bg-white hover:text-black",
         className,
       )}
       aria-label={`Add ${product.name} to cart`}

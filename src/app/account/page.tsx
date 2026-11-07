@@ -22,7 +22,7 @@ export default async function AccountPage() {
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "My account" }]} />
         <header className="mb-8">
           <p className="label mb-2">Namaste{session?.user?.name ? `, ${session.user.name.split(" ")[0]}` : ""}</p>
-          <h1 className="font-serif text-4xl text-navy sm:text-5xl">My Account</h1>
+          <h1 className="font-serif text-4xl text-white sm:text-5xl">My Account</h1>
         </header>
         <AccountView
           orders={orders}

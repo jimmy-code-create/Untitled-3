@@ -123,8 +123,8 @@ export function ProductForm({ initial }: { initial?: ProductView }) {
   return (
     <form onSubmit={submit} className="grid gap-5 xl:grid-cols-[1.5fr_1fr]">
       <div className="space-y-5">
-        <div className="border border-copper/20 bg-white p-5">
-          <h2 className="mb-4 font-serif text-xl text-navy">Basic details</h2>
+        <div className="border border-copper/20 bg-white/[0.04] p-5">
+          <h2 className="mb-4 font-serif text-xl text-white">Basic details</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             <label className="sm:col-span-2">
               <span className="label mb-1.5 block">Product name</span>
@@ -158,8 +158,8 @@ export function ProductForm({ initial }: { initial?: ProductView }) {
           </div>
         </div>
 
-        <div className="border border-copper/20 bg-white p-5">
-          <h2 className="mb-4 font-serif text-xl text-navy">Metal & making</h2>
+        <div className="border border-copper/20 bg-white/[0.04] p-5">
+          <h2 className="mb-4 font-serif text-xl text-white">Metal & making</h2>
           <div className="grid gap-3 sm:grid-cols-3">
             <label>
               <span className="label mb-1.5 block">Metal</span>
@@ -222,9 +222,9 @@ export function ProductForm({ initial }: { initial?: ProductView }) {
           </div>
         </div>
 
-        <div className="border border-copper/20 bg-white p-5">
+        <div className="border border-copper/20 bg-white/[0.04] p-5">
           <div className="mb-3 flex items-center justify-between">
-            <h2 className="font-serif text-xl text-navy">Photos</h2>
+            <h2 className="font-serif text-xl text-white">Photos</h2>
             <label className="btn-outline cursor-pointer px-3 py-2 text-[9px]">
               <ImagePlus className="h-3.5 w-3.5" /> {uploading ? "Uploading…" : "Upload"}
               <input type="file" accept="image/*" multiple hidden onChange={(e) => upload(e.target.files, "image")} />
@@ -237,7 +237,7 @@ export function ProductForm({ initial }: { initial?: ProductView }) {
                 <button
                   type="button"
                   onClick={() => setImages((prev) => prev.filter((_, idx) => idx !== i))}
-                  className="absolute right-1 top-1 grid h-6 w-6 place-items-center bg-white/90 text-ruby opacity-0 transition-opacity group-hover:opacity-100"
+                  className="absolute right-1 top-1 grid h-6 w-6 place-items-center bg-black/80 text-ruby opacity-0 transition-opacity group-hover:opacity-100"
                   aria-label="Remove image"
                 >
                   <Trash2 className="h-3 w-3" />
@@ -254,8 +254,8 @@ export function ProductForm({ initial }: { initial?: ProductView }) {
       </div>
 
       <div className="space-y-5">
-        <div className="border border-copper/20 bg-white p-5">
-          <h2 className="mb-4 font-serif text-xl text-navy">Placement</h2>
+        <div className="border border-copper/20 bg-white/[0.04] p-5">
+          <h2 className="mb-4 font-serif text-xl text-white">Placement</h2>
           <label className="mb-3 block">
             <span className="label mb-1.5 block">Category</span>
             <select value={form.category} onChange={(e) => update("category", e.target.value)} className="field">
@@ -306,8 +306,8 @@ export function ProductForm({ initial }: { initial?: ProductView }) {
           </div>
         </div>
 
-        <div className="border border-copper/20 bg-white p-5">
-          <h2 className="mb-4 font-serif text-xl text-navy">Sizes & badges</h2>
+        <div className="border border-copper/20 bg-white/[0.04] p-5">
+          <h2 className="mb-4 font-serif text-xl text-white">Sizes & badges</h2>
           <label className="mb-3 block">
             <span className="label mb-1.5 block">Sizes (comma separated)</span>
             <input value={form.sizes} onChange={(e) => update("sizes", e.target.value)} className="field" />
@@ -335,8 +335,8 @@ export function ProductForm({ initial }: { initial?: ProductView }) {
           )}
         </div>
 
-        <div className="border border-copper/20 bg-white p-5">
-          <h2 className="mb-3 font-serif text-xl text-navy">Merchandising</h2>
+        <div className="border border-copper/20 bg-white/[0.04] p-5">
+          <h2 className="mb-3 font-serif text-xl text-white">Merchandising</h2>
           {[
             { key: "featured" as const, label: "Feature on home page" },
             { key: "isNew" as const, label: "Mark as new" },

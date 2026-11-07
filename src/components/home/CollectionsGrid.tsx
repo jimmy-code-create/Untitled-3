@@ -17,7 +17,7 @@ export function CollectionsGrid() {
   const [lead, ...rest] = collections;
 
   return (
-    <section className="section bg-ivory">
+    <section className="section bg-black">
       <div className="container-x grid gap-10 lg:grid-cols-[minmax(0,300px)_minmax(0,1fr)] lg:gap-14">
         <div className="lg:sticky lg:top-32 lg:self-start">
           <SectionHeading
@@ -31,7 +31,7 @@ export function CollectionsGrid() {
           />
           <Link
             href="/collections/all"
-            className="inline-flex min-h-11 items-center gap-2 border-b border-copper/40 text-12 uppercase tracking-label text-copper-dark hover:border-navy hover:text-navy"
+            className="inline-flex min-h-11 items-center gap-2 border-b border-copper/40 text-12 uppercase tracking-label text-copper-dark hover:border-navy hover:text-white"
           >
             All {collections.length} collections
           </Link>
@@ -49,7 +49,7 @@ export function CollectionsGrid() {
                 imageClassName="transition-transform duration-300 ease-out group-hover:scale-[1.04]"
               />
               <div className="mt-3 flex items-baseline justify-between gap-3">
-                <h3 className="text-20 text-navy">{lang === "hi" ? lead.nameHi : lead.name}</h3>
+                <h3 className="text-20 text-white">{lang === "hi" ? lead.nameHi : lead.name}</h3>
                 <span className="text-12 uppercase tracking-label text-stone">{lead.kicker}</span>
               </div>
             </Link>
@@ -66,7 +66,7 @@ export function CollectionsGrid() {
                   imageClassName="transition-transform duration-300 ease-out group-hover:scale-[1.04]"
                 />
                 <div className="mt-3">
-                  <h3 className="text-20 text-navy">{lang === "hi" ? c.nameHi : c.name}</h3>
+                  <h3 className="text-20 text-white">{lang === "hi" ? c.nameHi : c.name}</h3>
                   <p className="mt-1 text-12 uppercase tracking-label text-stone">{c.kicker}</p>
                 </div>
               </Link>

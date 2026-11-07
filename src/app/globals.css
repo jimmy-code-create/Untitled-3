@@ -3,21 +3,26 @@
 @tailwind utilities;
 
 /*
- * JMD storefront skin — warm cream pages, deep burgundy, soft gold.
+ * JMD storefront skin — black glass, champagne light, Instrument Serif.
  * Tokens live in src/lib/design-tokens.ts; this file maps them to classes.
  */
 
 @layer base {
   :root {
-    --font-fraunces: "Fraunces";
+    --font-instrument: "Instrument Serif";
+    --font-fraunces: "Instrument Serif";
     --font-plex: "IBM Plex Sans";
     --font-cormorant: "Cormorant Garamond";
     --font-inter: "Inter";
     --font-devanagari: "Noto Sans Devanagari";
-    --font-script: "Fraunces";
+    --font-script: "Instrument Serif";
     --section-y: 56px;
     --section-y-lg: 96px;
     --page-gutter: 16px;
+    --ink: #ffffff;
+    --muted: #a8a29a;
+    --accent: #e4c68f;
+    --edge: rgba(255, 255, 255, 0.1);
   }
 
   * {
@@ -28,10 +33,19 @@
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     overflow-x: clip;
+    background: #050505;
+    color-scheme: dark;
   }
 
   body {
-    @apply bg-cream font-sans text-bodygrey antialiased;
+    @apply font-sans antialiased;
+    background-color: #050505;
+    background-image:
+      radial-gradient(55% 38% at 50% -8%, rgba(228, 198, 143, 0.09) 0%, transparent 70%),
+      radial-gradient(45% 35% at 92% 102%, rgba(255, 255, 255, 0.035) 0%, transparent 70%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: var(--muted);
     font-size: 16px;
     line-height: 26px;
     overflow-x: hidden;
@@ -41,13 +55,14 @@
   h2,
   h3,
   h4 {
-    @apply font-serif font-semibold text-ink;
+    @apply font-serif font-normal text-ink;
     letter-spacing: -0.01em;
+    text-wrap: balance;
   }
 
   ::selection {
-    background: rgba(176, 122, 42, 0.24);
-    color: #2a0a0e;
+    background: rgba(228, 198, 143, 0.28);
+    color: #fff;
   }
 
   input,
@@ -58,7 +73,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid #7a1f2b;
+    outline: 2px solid rgba(228, 198, 143, 0.85);
     outline-offset: 2px;
   }
 
@@ -67,10 +82,10 @@
     height: 9px;
   }
   ::-webkit-scrollbar-track {
-    background: #fdf1e6;
+    background: #050505;
   }
   ::-webkit-scrollbar-thumb {
-    background: #d9bfa4;
+    background: #262626;
     border-radius: 999px;
   }
 
@@ -108,12 +123,12 @@
 
   .label {
     @apply text-12 uppercase tracking-label;
-    color: #7a4e12;
+    color: rgba(228, 198, 143, 0.72);
   }
 
   .label-light {
     @apply text-12 uppercase tracking-label;
-    color: #f3d29a;
+    color: rgba(255, 255, 255, 0.55);
   }
 
   .h1-hero {
@@ -132,64 +147,113 @@
   .hairline {
     height: 1px;
     width: 100%;
-    background: rgba(122, 31, 43, 0.14);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .hairline-dark {
     height: 1px;
     width: 100%;
-    background: rgba(253, 241, 230, 0.18);
+    background: rgba(255, 255, 255, 0.14);
   }
 
+  /* Solid white pill — the one high-emphasis action on a screen. */
   .btn {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-control px-6 text-12 uppercase tracking-label transition-colors duration-300;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-control px-6 text-12 uppercase tracking-label transition-all duration-300;
   }
 
   .btn-copper {
-    @apply btn border border-burgundy bg-burgundy text-white hover:border-burgundy-dark hover:bg-burgundy-dark;
+    @apply btn bg-white text-black hover:bg-white/90 hover:shadow-[0_0_30px_-6px_rgba(255,255,255,0.45)];
   }
 
   .btn-navy {
-    @apply btn bg-burgundy-dark text-cream hover:bg-burgundy;
+    @apply btn text-white;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .btn-navy:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .btn-outline {
-    @apply btn border border-burgundy/40 text-burgundy hover:bg-burgundy hover:text-white;
+    @apply btn text-white;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .btn-outline:hover {
+    border-color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.09);
   }
 
   .btn-outline-light {
-    @apply btn border border-gold-light/60 text-cream hover:bg-gold-light hover:text-burgundy-dark;
+    @apply btn text-white;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.12);
   }
 
   .btn-whatsapp {
-    @apply btn bg-whatsapp text-white hover:bg-[#0B6231];
+    @apply btn text-white;
+    background: #1fa855;
+  }
+  .btn-whatsapp:hover {
+    background: #178543;
   }
 
   .btn-gold {
-    @apply btn border border-gold/50 bg-transparent text-gold-dark hover:bg-gold hover:text-white;
+    @apply btn;
+    color: var(--accent);
+    border: 1px solid rgba(228, 198, 143, 0.4);
+    background: rgba(228, 198, 143, 0.06);
+  }
+  .btn-gold:hover {
+    background: rgba(228, 198, 143, 0.16);
   }
 
   .card {
-    @apply rounded-card border border-burgundy/10 bg-white shadow-card;
+    @apply rounded-card;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 24px 60px -40px rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
   .field {
-    @apply min-h-11 w-full rounded-control border border-burgundy/20 bg-white px-5 py-3 text-14 text-ink
-      placeholder:text-bodygrey/70 focus:border-burgundy focus:outline-none;
+    @apply min-h-11 w-full rounded-control px-5 py-3 text-14 text-ink placeholder:text-white/35 focus:outline-none;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .field:focus {
+    border-color: rgba(228, 198, 143, 0.7);
   }
 
   .field-dark {
-    @apply min-h-11 w-full rounded-control border border-cream/20 bg-burgundy-soft px-5 py-3 text-14 text-cream
-      placeholder:text-cream/45 focus:border-gold-light focus:outline-none;
+    @apply min-h-11 w-full rounded-control px-5 py-3 text-14 text-ink placeholder:text-white/30 focus:outline-none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .field-dark:focus {
+    border-color: rgba(228, 198, 143, 0.7);
   }
 
   .link-quiet {
-    @apply relative text-14 text-bodygrey transition-colors hover:text-burgundy;
+    @apply relative text-14 transition-colors;
+    color: var(--muted);
+  }
+  .link-quiet:hover {
+    color: #fff;
   }
 
   .skeleton {
-    @apply relative overflow-hidden rounded-photo bg-blush;
-    background-image: linear-gradient(90deg, #f3e7e8 0px, #fdf1e6 40px, #f3e7e8 80px);
+    @apply relative overflow-hidden rounded-photo;
+    background: rgba(255, 255, 255, 0.05);
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.1) 40px, rgba(255, 255, 255, 0.04) 80px);
     background-size: 600px 100%;
     animation: shimmer 1.6s linear infinite;
   }
@@ -210,19 +274,21 @@
   .footer-humps {
     height: 22px;
     background:
-      radial-gradient(60% 100% at 25% 100%, #2e0609 99%, transparent 100%),
-      radial-gradient(60% 100% at 75% 100%, #2e0609 99%, transparent 100%),
-      linear-gradient(#2e0609, #2e0609);
+      radial-gradient(60% 100% at 25% 100%, #0b0b0b 99%, transparent 100%),
+      radial-gradient(60% 100% at 75% 100%, #0b0b0b 99%, transparent 100%),
+      linear-gradient(#0b0b0b, #0b0b0b);
     background-size: 50% 100%, 50% 100%, 100% 8px;
     background-position: left bottom, right bottom, center bottom;
     background-repeat: no-repeat;
     clip-path: polygon(0 100%, 0 62%, 8% 28%, 20% 8%, 32% 0, 44% 6%, 50% 22%, 56% 6%, 68% 0, 80% 8%, 92% 28%, 100% 62%, 100% 100%);
   }
 
-  /* Arch-topped shop card with a soft blush ledge underneath. */
+  /* Arch-topped shop card with a soft ledge underneath. */
   .arch-card {
     border-radius: 160px 160px 24px 24px;
-    box-shadow: 0 18px 0 -6px #f3e7e8, 0 30px 50px -30px rgba(46, 6, 9, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   .diamond-dot {
@@ -231,11 +297,11 @@
     height: 8px;
     transform: rotate(45deg);
     border-radius: 1px;
-    background: #d8c9c1;
+    background: rgba(255, 255, 255, 0.25);
     transition: background-color 250ms ease;
   }
   .diamond-dot[data-active="true"] {
-    background: #7a1f2b;
+    background: var(--accent);
   }
 
   .logo-shine {
@@ -260,10 +326,10 @@
   }
 
   .rate-change-up {
-    color: #1f7a45;
+    color: #4ade80;
   }
   .rate-change-down {
-    color: #b3261e;
+    color: #f87171;
   }
 
   /* Scroll reveal: 16px up, 400ms, once. */
@@ -283,6 +349,49 @@
       opacity: 1;
       transform: none;
     }
+  }
+
+  /* ── Liquid glass: the primary surface language ───────────────────────
+     A 1.4px gradient rim drawn with a masked pseudo-element over a nearly
+     transparent, 4px-blurred pane. */
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.01);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .liquid-glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.15) 20%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0.15) 80%,
+      rgba(255, 255, 255, 0.45) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Soft light pool used behind editorial sections instead of flat panels. */
+  .glow-top {
+    background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.045) 0%, transparent 70%);
+  }
+  .glow-center {
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.035) 0%, transparent 62%);
   }
 }
 
@@ -328,20 +437,20 @@
 }
 
 .price-flash-up {
-  color: #0f7a3d !important;
+  color: #4ade80 !important;
   animation: price-pop-up 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .price-flash-down {
-  color: #b3261e !important;
+  color: #f87171 !important;
   animation: price-pop-down 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .rate-change-up {
-  color: #0f7a3d;
+  color: #4ade80;
 }
 .rate-change-down {
-  color: #b3261e;
+  color: #f87171;
 }
 
 .live-dot {
@@ -351,30 +460,30 @@
   border-radius: 999px;
 }
 .live-dot-on {
-  background: #0f7a3d;
-  box-shadow: 0 0 0 0 rgba(15, 122, 61, 0.55);
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.55);
   animation: live-pulse 1.9s ease-out infinite;
 }
 .live-dot-manual {
-  background: #b07a2a;
+  background: #e4c68f;
 }
 @keyframes live-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(15, 122, 61, 0.5);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
   }
   70% {
-    box-shadow: 0 0 0 6px rgba(15, 122, 61, 0);
+    box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(15, 122, 61, 0);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
   }
 }
 
 /* ───────────────────────────── festive strip ───────────────────────────── */
 
 .festive-bar {
-  background: linear-gradient(90deg, #3e0709 0%, #6e0d10 34%, #93090b 58%, #5a0a0c 78%, #3e0709 100%);
-  box-shadow: inset 0 -1px 0 rgba(243, 210, 154, 0.3);
+  background: linear-gradient(90deg, #0b0b0b 0%, #1a1510 34%, #241a0d 58%, #141210 78%, #0b0b0b 100%);
+  box-shadow: inset 0 -1px 0 rgba(228, 198, 143, 0.25);
 }
 .festive-bar-out {
   animation: bar-out 220ms ease-out forwards;
@@ -390,9 +499,9 @@
   background: linear-gradient(
     100deg,
     transparent 0%,
-    rgba(243, 210, 154, 0.16) 42%,
+    rgba(228, 198, 143, 0.16) 42%,
     rgba(255, 255, 255, 0.34) 50%,
-    rgba(243, 210, 154, 0.16) 58%,
+    rgba(228, 198, 143, 0.16) 58%,
     transparent 100%
   );
   background-size: 240% 100%;
@@ -408,7 +517,7 @@
 }
 
 .festive-text {
-  background: linear-gradient(90deg, #f3d29a 0%, #fff7e2 45%, #f3d29a 90%);
+  background: linear-gradient(90deg, #e4c68f 0%, #fff7e2 45%, #e4c68f 90%);
   background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -638,15 +747,15 @@
     transform: scaleX(1);
   }
   .festive-text {
-    color: #f3d29a;
+    color: #e4c68f;
     background: none;
-    -webkit-text-fill-color: #f3d29a;
+    -webkit-text-fill-color: #e4c68f;
   }
   .price-flash-up {
-    color: #0f7a3d !important;
+    color: #4ade80 !important;
   }
   .price-flash-down {
-    color: #b3261e !important;
+    color: #f87171 !important;
   }
   .diwali-layer {
     display: none;
@@ -656,19 +765,17 @@
 /* ──────────────────────── transparent product stage ──────────────────────── */
 
 .product-stage {
-  background:
-    radial-gradient(120% 85% at 50% 0%, #fffdf8 0%, #fbf6ee 52%, #f3e7d8 100%);
+  background: radial-gradient(120% 85% at 50% 0%, #151310 0%, #0c0c0c 52%, #050505 100%);
   isolation: isolate;
 }
 
 .product-stage-clear {
-  background:
-    repeating-conic-gradient(#efe3d5 0% 25%, #fdf8f1 0% 50%) 50% / 18px 18px;
+  background: repeating-conic-gradient(#141414 0% 25%, #0a0a0a 0% 50%) 50% / 18px 18px;
 }
 
-/* Blends the studio photograph into the ivory stage so the piece floats. */
+/* Blends the studio photograph into the stage so the piece floats. */
 .product-shot {
-  mix-blend-mode: multiply;
+  mix-blend-mode: normal;
 }
 
 .stage-shadow {
@@ -678,7 +785,7 @@
   width: 58%;
   height: 18px;
   transform: translateX(-50%);
-  background: radial-gradient(50% 50% at 50% 50%, rgba(122, 31, 43, 0.24), transparent 72%);
+  background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0.85), transparent 72%);
   filter: blur(7px);
   pointer-events: none;
 }
@@ -687,39 +794,4 @@
   .product-shot {
     transition: none !important;
   }
-}
-
-/* ── Cinematic hero: liquid-glass chrome ──────────────────────────────
-   A 1.4px gradient rim drawn with a masked pseudo-element, over a nearly
-   transparent, 4px-blurred pane. Used by the floating rate chip and any
-   glass control that sits on photography. */
-.liquid-glass {
-  background: rgba(255, 255, 255, 0.01);
-  background-blend-mode: luminosity;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border: none;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-.liquid-glass::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.4px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.15) 80%,
-    rgba(255, 255, 255, 0.45) 100%
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
 }

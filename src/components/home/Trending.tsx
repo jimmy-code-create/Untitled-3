@@ -19,7 +19,7 @@ export function Trending({ items }: { items: ProductView[] }) {
   };
 
   return (
-    <section className="bg-ivory py-16 sm:py-24">
+    <section className="bg-black py-16 sm:py-24">
       <div className="container-x">
         <SectionHeading
           kicker={isHi ? "सबसे ज़्यादा पसंद किए गए" : "Most loved this month"}
@@ -30,14 +30,14 @@ export function Trending({ items }: { items: ProductView[] }) {
               <button
                 onClick={() => scroll(-1)}
                 aria-label="Previous"
-                className="grid h-11 w-11 place-items-center border border-copper/50 text-copper-dark transition-colors hover:bg-copper hover:text-navy"
+                className="grid h-11 w-11 place-items-center border border-copper/50 text-copper-dark transition-colors hover:bg-copper hover:text-white"
               >
                 <IconArrowLeft size={16} aria-hidden />
               </button>
               <button
                 onClick={() => scroll(1)}
                 aria-label="Next"
-                className="grid h-11 w-11 place-items-center border border-copper/50 text-copper-dark transition-colors hover:bg-copper hover:text-navy"
+                className="grid h-11 w-11 place-items-center border border-copper/50 text-copper-dark transition-colors hover:bg-copper hover:text-white"
               >
                 <IconArrowRight size={16} aria-hidden />
               </button>

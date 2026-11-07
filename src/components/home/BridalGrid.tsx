@@ -16,7 +16,7 @@ export function BridalGrid({ items }: { items: ProductView[] }) {
   const { lang } = useLang();
 
   return (
-    <section className="section bg-ivory">
+    <section className="section bg-black">
       <div className="container-x">
         <SectionHeading
           kicker="Bridal"
@@ -29,7 +29,7 @@ export function BridalGrid({ items }: { items: ProductView[] }) {
           action={
             <Link
               href="/collections/bridal"
-              className="inline-flex min-h-11 items-center border-b border-copper/40 text-12 uppercase tracking-label text-copper-dark hover:border-navy hover:text-navy"
+              className="inline-flex min-h-11 items-center border-b border-copper/40 text-12 uppercase tracking-label text-copper-dark hover:border-navy hover:text-white"
             >
               All bridal pieces
             </Link>
@@ -48,13 +48,13 @@ export function BridalGrid({ items }: { items: ProductView[] }) {
               />
               <div className="mt-3 flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-20 text-navy">{p.name}</h3>
+                  <h3 className="text-20 text-white">{p.name}</h3>
                   <p className="mt-1 text-12 uppercase tracking-label text-stone">
                     {p.purity} {p.metal === "SILVER" ? "silver" : p.metal.toLowerCase()} · {p.weight} g
                     {p.gemstoneSlug && p.gemstoneSlug !== "diamond" ? ` · ${p.gemstoneSlug.replace("-", " ")}` : ""}
                   </p>
                 </div>
-                <p className="shrink-0 text-16 text-navy">{inr(p.price)}</p>
+                <p className="shrink-0 text-16 text-white">{inr(p.price)}</p>
               </div>
             </Link>
           ))}

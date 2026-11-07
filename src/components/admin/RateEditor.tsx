@@ -58,12 +58,12 @@ function Toggle({
       onClick={() => onChange(!checked)}
       className={cn(
         "relative h-6 w-11 shrink-0 rounded-full transition-colors",
-        checked ? "bg-burgundy" : "bg-bodygrey/25",
+        checked ? "bg-white/10" : "bg-bodygrey/25",
       )}
     >
       <span
         className={cn(
-          "absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform",
+          "absolute top-0.5 h-5 w-5 rounded-full bg-white/[0.04] shadow-sm transition-transform",
           checked ? "translate-x-[22px]" : "translate-x-0.5",
         )}
       />
@@ -133,7 +133,7 @@ export function RateEditor({
             <IconSparkle size={15} /> Movement over 3% held for approval
           </p>
           {pending.map((c) => (
-            <div key={c.purity} className="mt-2 flex flex-wrap items-center justify-between gap-2 rounded-[12px] bg-white/70 px-3 py-2">
+            <div key={c.purity} className="mt-2 flex flex-wrap items-center justify-between gap-2 rounded-[12px] bg-black/60 px-3 py-2">
               <span className="text-[11px] text-ink">
                 {c.label}: {fmt(c.shopRate)} → <strong>{fmt(c.pending)}</strong>
                 {c.feedRate ? <span className="ml-2 text-bodygrey">feed {fmt(c.feedRate)}</span> : null}
@@ -152,7 +152,7 @@ export function RateEditor({
       ) : null}
 
       {!liveConfigured ? (
-        <p className="rounded-card border border-burgundy/10 bg-white px-4 py-3 text-[11px] text-bodygrey">
+        <p className="rounded-card border border-white/10 bg-white/[0.04] px-4 py-3 text-[11px] text-bodygrey">
           {cfg.provider === "metals-api" || cfg.provider === "goldpricez" ? (
             <>
               No{" "}
@@ -175,7 +175,7 @@ export function RateEditor({
         {cards.map((card) => {
           const stale = card.staleMinutes != null && card.staleMinutes > 30;
           return (
-            <div key={card.purity} className="rounded-card border border-burgundy/10 bg-white p-4 shadow-card">
+            <div key={card.purity} className="rounded-card border border-white/10 bg-white/[0.04] p-4 shadow-card">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <h2 className="font-serif text-[19px] font-semibold text-ink">{card.label}</h2>
@@ -196,7 +196,7 @@ export function RateEditor({
                     card.useLiveFeed && liveConfigured
                       ? stale
                         ? "bg-peach text-gold-dark"
-                        : "bg-[#E7F4EC] text-whatsapp"
+                        : "bg-white/[0.06] text-whatsapp"
                       : "bg-blush text-burgundy",
                   )}
                 >
@@ -204,7 +204,7 @@ export function RateEditor({
                 </span>
               </div>
 
-              <div className="mt-3 flex items-center justify-between rounded-[14px] bg-cream px-3 py-2">
+              <div className="mt-3 flex items-center justify-between rounded-[14px] bg-black px-3 py-2">
                 <span className="text-[10px] uppercase tracking-[0.1em] text-gold-dark">Use live feed</span>
                 <Toggle
                   checked={card.useLiveFeed}
@@ -244,7 +244,7 @@ export function RateEditor({
                 </button>
               </div>
 
-              <div className="mt-3 border-t border-burgundy/10 pt-2">
+              <div className="mt-3 border-t border-white/10 pt-2">
                 <p className="text-[9px] uppercase tracking-[0.1em] text-bodygrey">Recent snapshots</p>
                 <ul className="mt-1 space-y-1">
                   {card.history.slice(0, 4).map((h) => (
@@ -264,7 +264,7 @@ export function RateEditor({
         })}
       </div>
 
-      <div className="rounded-card border border-burgundy/10 bg-white p-4 shadow-card">
+      <div className="rounded-card border border-white/10 bg-white/[0.04] p-4 shadow-card">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
             <h2 className="font-serif text-[19px] font-semibold text-ink">India adjustment &amp; rate rule</h2>
@@ -355,7 +355,7 @@ export function RateEditor({
         </p>
       </div>
 
-      <div className="rounded-card border border-burgundy/10 bg-white p-4 shadow-card">
+      <div className="rounded-card border border-white/10 bg-white/[0.04] p-4 shadow-card">
         <h2 className="font-serif text-[19px] font-semibold text-ink">Change history</h2>
         <div className="mt-2 overflow-x-auto">
           <table className="w-full min-w-[520px] text-left text-[11px]">

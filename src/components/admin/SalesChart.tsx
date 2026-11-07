@@ -11,7 +11,7 @@ export function SalesChart({ days }: { days: { label: string; value: number }[] 
               className="w-full bg-gradient-to-t from-copper-dark/70 to-copper transition-opacity group-hover:opacity-80"
               style={{ height: `${Math.max(3, (d.value / max) * 100)}%` }}
             />
-            <span className="pointer-events-none absolute -top-8 hidden whitespace-nowrap border border-copper/25 bg-white px-2 py-1 text-[9px] text-charcoal shadow-soft group-hover:block">
+            <span className="pointer-events-none absolute -top-8 hidden whitespace-nowrap border border-copper/25 bg-white/[0.04] px-2 py-1 text-[9px] text-charcoal shadow-soft group-hover:block">
               {compactInr(d.value)}
             </span>
           </div>

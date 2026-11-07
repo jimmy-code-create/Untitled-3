@@ -24,11 +24,11 @@ export function ContactBar() {
   return (
     <>
       {/* Mobile sticky bar */}
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-navy/15 bg-ivory shadow-sticky lg:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-navy/15 bg-black shadow-sticky lg:hidden">
         <div className="grid grid-cols-3">
           <a
             href={telLink(SHOP.phones[0])}
-            className="flex min-h-14 items-center justify-center gap-2 border-r border-navy/15 text-12 uppercase tracking-label text-navy"
+            className="flex min-h-14 items-center justify-center gap-2 border-r border-navy/15 text-12 uppercase tracking-label text-white"
             data-track="call"
           >
             <Phone className="h-4 w-4" strokeWidth={1.5} aria-hidden /> Call
@@ -49,7 +49,7 @@ export function ContactBar() {
             href={mapsLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex min-h-14 items-center justify-center gap-2 border-l border-navy/15 text-12 uppercase tracking-label text-navy"
+            className="flex min-h-14 items-center justify-center gap-2 border-l border-navy/15 text-12 uppercase tracking-label text-white"
             data-track="directions"
           >
             <Navigation className="h-4 w-4" strokeWidth={1.5} aria-hidden /> Directions

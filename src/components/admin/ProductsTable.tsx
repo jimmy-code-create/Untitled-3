@@ -31,7 +31,7 @@ export function ProductsTable({ products }: { products: ProductView[] }) {
   };
 
   return (
-    <div className="overflow-x-auto border border-copper/20 bg-white">
+    <div className="overflow-x-auto border border-copper/20 bg-white/[0.04]">
       <table className="w-full min-w-[720px] text-left">
         <thead>
           <tr className="border-b border-copper/15 text-[9px] uppercase tracking-widest2 text-stone">
@@ -52,7 +52,7 @@ export function ProductsTable({ products }: { products: ProductView[] }) {
                     <Image src={p.images[0]} alt="" fill sizes="36px" className="object-cover" />
                   </div>
                   <div>
-                    <p className="text-[11.5px] text-navy">{p.name}</p>
+                    <p className="text-[11.5px] text-white">{p.name}</p>
                     <p className="text-[9px] text-stone">{p.slug}</p>
                   </div>
                 </div>

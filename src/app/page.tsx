@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { HeroCarousel } from "@/components/home/HeroCarousel";
+import { CinematicHero } from "@/components/home/CinematicHero";
 import { CollectionsFeature } from "@/components/home/CollectionsFeature";
 import { WorldOfJmd } from "@/components/home/WorldOfJmd";
 import { GiftBanner } from "@/components/home/GiftBanner";
@@ -38,7 +38,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroCarousel />
+      <CinematicHero />
       <CollectionsFeature />
       <WorldOfJmd />
       <GiftBanner settings={settings} />
